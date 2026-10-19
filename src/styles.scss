@@ -1,0 +1,17 @@
+@use 'tokens' as t;
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: t.$font-family-base;
+  color: t.$color-text-primary;
+  background: t.$color-surface-muted;
+}
+
+* {
+  box-sizing: border-box;
+}
