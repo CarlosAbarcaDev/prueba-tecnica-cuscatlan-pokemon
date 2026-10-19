@@ -1,0 +1,24 @@
+@use 'tokens' as t;
+
+// Maps a PokeAPI type name to its accent color, used by the stat bar and
+// pokemon-card components so each Pokémon's palette matches its type.
+$type-colors: (
+  normal: t.$color-type-normal,
+  fire: t.$color-type-fire,
+  water: t.$color-type-water,
+  electric: t.$color-type-electric,
+  grass: t.$color-type-grass,
+  ice: t.$color-type-ice,
+  fighting: t.$color-type-fighting,
+  poison: t.$color-type-poison,
+  ground: t.$color-type-ground,
+  flying: t.$color-type-flying,
+  psychic: t.$color-type-psychic,
+  bug: t.$color-type-bug,
+  rock: t.$color-type-rock,
+  ghost: t.$color-type-ghost,
+  dragon: t.$color-type-dragon,
+  dark: t.$color-type-dark,
+  steel: t.$color-type-steel,
+  fairy: t.$color-type-fairy
+);
