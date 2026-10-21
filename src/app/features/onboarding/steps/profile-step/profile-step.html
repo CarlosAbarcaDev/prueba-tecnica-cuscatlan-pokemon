@@ -1,0 +1,45 @@
+<app-header />
+
+<main class="profile-step">
+  <div class="profile-step__heading">
+    <span class="profile-step__back" aria-hidden="true">‹</span>
+    <h1>¡Hola! Configuremos tu perfil</h1>
+  </div>
+  <p class="profile-step__subtitle">Queremos conocerte mejor.</p>
+
+  <form class="profile-step__layout" [formGroup]="form" (ngSubmit)="submit()">
+    <app-photo-upload formControlName="photoDataUrl" />
+
+    <div class="profile-step__form">
+      <div class="profile-step__form-heading">
+        <h2>Tu información</h2>
+        <p>Completa la siguiente información para completar tu perfil</p>
+      </div>
+
+      <div class="profile-step__fields">
+        <app-floating-input label="Nombre" [required]="true" formControlName="name" />
+        <app-hobby-select formControlName="hobby" />
+        <app-floating-input label="Cumpleaños" type="date" [required]="true" formControlName="birthDate" />
+
+        @if (documentStrategy(); as strategy) {
+          <div class="profile-step__document-type">
+            <span [class.profile-step__document-type--active]="strategy.kind === 'dui'">DUI</span>
+            <span [class.profile-step__document-type--active]="strategy.kind === 'minority-card'">
+              Carnet de Minoridad
+            </span>
+          </div>
+          <app-floating-input
+            [label]="strategy.label"
+            [required]="strategy.required"
+            [appDuiFormat]="strategy.autoFormat"
+            formControlName="documentValue"
+          />
+        } @else {
+          <app-floating-input label="Documento" formControlName="documentValue" />
+        }
+      </div>
+
+      <app-primary-button type="submit" [disabled]="form.invalid">Continuar</app-primary-button>
+    </div>
+  </form>
+</main>
