@@ -1,5 +1,10 @@
 @use 'tokens' as t;
 
+:host {
+  display: block;
+  width: 100%;
+}
+
 .hobby-select {
   position: relative;
   width: 100%;

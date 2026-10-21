@@ -8,6 +8,7 @@ import { TrainerStoreService } from '../../../../core/services/trainer-store.ser
 import { DocumentStrategy, resolveDocumentStrategy } from '../../../../core/strategies/document-validation.strategy';
 import { DuiFormatDirective } from '../../../../shared/directives/dui-format.directive';
 import { AppHeaderComponent } from '../../../../shared/components/app-header/app-header';
+import { DatePickerComponent } from '../../../../shared/components/date-picker/date-picker';
 import { FloatingInputComponent } from '../../../../shared/components/floating-input/floating-input';
 import { HobbySelectComponent } from '../../../../shared/components/hobby-select/hobby-select';
 import { PhotoUploadComponent } from '../../../../shared/components/photo-upload/photo-upload';
@@ -26,6 +27,7 @@ interface ProfileForm {
   imports: [
     ReactiveFormsModule,
     AppHeaderComponent,
+    DatePickerComponent,
     FloatingInputComponent,
     HobbySelectComponent,
     PhotoUploadComponent,

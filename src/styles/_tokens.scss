@@ -17,6 +17,8 @@ $color-surface-disabled: #e6e6e6; // Neutro/Gris 20 — disabled button backgrou
 $color-track-bg: #f0f0f3; // neumorphic progress track base
 $color-track-bg-inner: #eeeeee;
 $color-danger: #e53935; // delete/trash icon
+$color-avatar-placeholder-bg: #e7eff5; // empty photo circle background
+$color-calendar-accent: #5c2ee8; // approximated from the pasted reference screenshot in Figma, not a token
 
 // Pokémon type accent colors for stat bars. Only grass/fire/water were confirmed
 // directly from Figma; the rest follow the same palette family as a reasonable

@@ -73,32 +73,10 @@
 .profile-step__fields {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: t.$space-lg;
-  width: 100%;
-}
-
-.profile-step__document-type {
-  display: flex;
-  width: 100%;
-  gap: t.$space-sm;
-
-  span {
-    flex: 1;
-    text-align: center;
-    padding: t.$space-sm;
-    border-radius: t.$radius-button;
-    font-family: t.$font-family-base;
-    font-size: t.$font-size-body-sm;
-    font-weight: t.$font-weight-semibold;
-    background: t.$color-surface-muted;
-    color: t.$color-text-muted;
-  }
-}
-
-.profile-step__document-type--active {
-  background: t.$color-primary-navy !important;
-  color: t.$color-surface !important;
+  width: 334px;
+  max-width: 100%;
 }
 
 app-primary-button {

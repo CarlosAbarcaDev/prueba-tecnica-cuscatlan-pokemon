@@ -1,10 +1,16 @@
 import { calculateAge } from './age.util';
 
+// Builds the string from local Y/M/D (not toISOString, which converts to
+// UTC and can land on a different calendar day depending on the machine's
+// timezone and time of day — exactly the bug calculateAge itself had to
+// be fixed for).
 function isoDateYearsAgo(years: number, dayOffset = 0): string {
   const date = new Date();
   date.setFullYear(date.getFullYear() - years);
   date.setDate(date.getDate() + dayOffset);
-  return date.toISOString().slice(0, 10);
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${date.getFullYear()}-${month}-${day}`;
 }
 
 describe('calculateAge', () => {
