@@ -1,4 +1,4 @@
-<div class="photo-upload">
+<app-card-shell>
   <p class="photo-upload__title">Imágen perfil</p>
 
   <button
@@ -11,19 +11,7 @@
     @if (photoDataUrl) {
       <img [src]="photoDataUrl" alt="Foto de perfil" />
     } @else {
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path
-          d="M12 15.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z"
-          stroke="currentColor"
-          stroke-width="1.2"
-        />
-        <path
-          d="M4 19.5c1.5-3.2 4.5-5 8-5s6.5 1.8 8 5"
-          stroke="currentColor"
-          stroke-width="1.2"
-          stroke-linecap="round"
-        />
-      </svg>
+      <app-icon name="user" />
     }
   </button>
 
@@ -45,29 +33,13 @@
         [disabled]="disabled"
         (click)="removePhoto($event)"
       >
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M5 7h14M10 11v6M14 11v6M7 7l1 12a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+        <app-icon name="trash" />
       </button>
     </div>
   } @else {
     <button type="button" class="photo-upload__file-pill" [disabled]="disabled" (click)="openFilePicker()">
       <span class="photo-upload__placeholder-text">Adjunta un foto</span>
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path
-          d="M12 16V4m0 0 4 4m-4-4-4 4M5 16v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"
-          stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
+      <app-icon name="cloud-upload" />
     </button>
   }
-</div>
+</app-card-shell>

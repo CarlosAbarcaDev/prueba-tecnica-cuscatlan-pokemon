@@ -76,8 +76,7 @@
   right: 14px;
   top: 50%;
   transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
+  font-size: 20px;
   color: t.$color-text-muted;
   pointer-events: none;
 }
@@ -115,9 +114,8 @@
   font-size: t.$font-size-body-sm;
   color: t.$color-black;
 
-  svg {
-    width: 14px;
-    height: 14px;
+  app-icon {
+    font-size: 14px;
     color: t.$color-text-muted;
   }
 }

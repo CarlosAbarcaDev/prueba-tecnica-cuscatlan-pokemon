@@ -10,6 +10,8 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { AlertService } from '../../../core/services/alert.service';
+import { CardShellComponent } from '../../atoms/card-shell/card-shell';
+import { IconComponent } from '../../atoms/icon/icon';
 
 const ACCEPTED_EXTENSIONS = ['jpg', 'jpeg', 'png'];
 const ACCEPTED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png'];
@@ -26,6 +28,7 @@ function noop(): void {
  */
 @Component({
   selector: 'app-photo-upload',
+  imports: [CardShellComponent, IconComponent],
   templateUrl: './photo-upload.html',
   styleUrl: './photo-upload.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

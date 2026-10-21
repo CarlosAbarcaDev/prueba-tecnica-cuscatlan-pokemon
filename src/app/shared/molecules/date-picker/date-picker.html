@@ -8,10 +8,7 @@
   >
     <span class="date-picker__value">{{ value ? formatDisplay(value) : '' }}</span>
     <span class="date-picker__label">{{ label() }}{{ required() ? '*' : '' }}</span>
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="date-picker__icon">
-      <rect x="3.5" y="5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.4" />
-      <path d="M3.5 9.5h17M8 3v3.5M16 3v3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
-    </svg>
+    <app-icon name="calendar" class="date-picker__icon" />
   </button>
 
   @if (isOpen) {
@@ -20,9 +17,7 @@
         <div class="date-picker__header">
           <button type="button" class="date-picker__month-label" (click)="toggleYearPicker($event)">
             {{ monthLabel() }}
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <app-icon name="chevron-down" />
           </button>
           <div class="date-picker__nav">
             <button type="button" aria-label="Mes anterior" (click)="goToPreviousMonth($event)">‹</button>

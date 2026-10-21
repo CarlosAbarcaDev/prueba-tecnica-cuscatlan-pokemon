@@ -2,22 +2,7 @@
 
 :host {
   display: block;
-  width: 392px;
-  max-width: 100%;
-}
-
-.photo-upload {
   width: 100%;
-  min-height: 600px;
-  box-sizing: border-box;
-  background: t.$color-yellow;
-  border-radius: t.$radius-card-rounded;
-  padding: 25px 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 35px;
 }
 
 .photo-upload__title {
@@ -58,9 +43,8 @@
   background: t.$color-avatar-placeholder-bg;
   color: t.$color-accent-blue-pale;
 
-  svg {
-    width: 100px;
-    height: 100px;
+  app-icon {
+    font-size: 100px;
   }
 }
 
@@ -80,9 +64,8 @@
   font-family: t.$font-family-base;
   color: t.$color-accent-blue;
 
-  svg {
-    width: 24px;
-    height: 24px;
+  app-icon {
+    font-size: 24px;
     flex-shrink: 0;
   }
 
