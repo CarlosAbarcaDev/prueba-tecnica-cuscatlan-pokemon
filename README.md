@@ -57,8 +57,8 @@ npm run lint
 
 - [x] Módulo 1 — Setup del proyecto, estructura base, servicios core.
 - [x] Módulo 2 — Tokens de diseño desde Figma Dev Mode.
-- [ ] Módulo 3 — Paso de carga de foto.
-- [ ] Módulo 4 — Paso de datos del entrenador.
+- [x] Módulo 3 — Paso de carga de foto (validación de formato JPG/JPEG/PNG con alerta visible).
+- [x] Módulo 4 — Paso de datos del entrenador (pasatiempo, cumpleaños, DUI/carnet de minoridad).
 - [ ] Módulo 5 — Pantallas de carga.
 - [ ] Módulo 6 — Selección de equipo Pokémon.
 - [ ] Módulo 7 — Perfil / Home.
