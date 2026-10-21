@@ -1,6 +1,6 @@
 import { Directive, Input, OnChanges, inject } from '@angular/core';
 
-import { FloatingInputComponent } from '../components/floating-input/floating-input';
+import { FloatingInputComponent } from '../molecules/floating-input/floating-input';
 
 /** 8 digits, then an automatic hyphen, then the 1-digit check digit (e.g. 04341130-5). */
 function formatDui(raw: string): string {

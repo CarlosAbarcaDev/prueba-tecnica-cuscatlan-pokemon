@@ -11,6 +11,8 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { IconComponent } from '../../atoms/icon/icon';
+
 const WEEKDAY_INITIALS = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
 const MONTH_NAMES = [
   'Enero',
@@ -76,6 +78,7 @@ function parseIsoDateLocal(iso: string): Date {
  */
 @Component({
   selector: 'app-date-picker',
+  imports: [IconComponent],
   templateUrl: './date-picker.html',
   styleUrl: './date-picker.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

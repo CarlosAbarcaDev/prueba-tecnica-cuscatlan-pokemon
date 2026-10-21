@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
-import { FloatingInputComponent } from '../components/floating-input/floating-input';
+import { FloatingInputComponent } from '../molecules/floating-input/floating-input';
 import { DuiFormatDirective } from './dui-format.directive';
 
 @Component({

@@ -1,0 +1,21 @@
+@use 'tokens' as t;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-family: t.$font-family-base;
+  font-weight: t.$font-weight-regular;
+  font-size: t.$font-size-h2;
+  color: t.$color-primary-navy;
+}
+
+.section-heading p {
+  margin: t.$space-sm 0 0;
+  font-family: t.$font-family-base;
+  font-size: t.$font-size-body-lg;
+  color: t.$color-text-muted;
+}

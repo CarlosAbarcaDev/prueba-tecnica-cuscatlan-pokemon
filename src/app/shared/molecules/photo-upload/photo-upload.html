@@ -1,0 +1,45 @@
+<app-card-shell>
+  <p class="photo-upload__title">Imágen perfil</p>
+
+  <button
+    type="button"
+    class="photo-upload__circle"
+    [class.photo-upload__circle--empty]="!photoDataUrl"
+    [disabled]="disabled"
+    (click)="openFilePicker()"
+  >
+    @if (photoDataUrl) {
+      <img [src]="photoDataUrl" alt="Foto de perfil" />
+    } @else {
+      <app-icon name="user" />
+    }
+  </button>
+
+  <input
+    #fileInput
+    type="file"
+    accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+    hidden
+    (change)="handleFileSelected($event)"
+  />
+
+  @if (fileName) {
+    <div class="photo-upload__file-pill">
+      <span class="photo-upload__filename">{{ fileName }}</span>
+      <button
+        type="button"
+        class="photo-upload__remove"
+        aria-label="Quitar foto"
+        [disabled]="disabled"
+        (click)="removePhoto($event)"
+      >
+        <app-icon name="trash" />
+      </button>
+    </div>
+  } @else {
+    <button type="button" class="photo-upload__file-pill" [disabled]="disabled" (click)="openFilePicker()">
+      <span class="photo-upload__placeholder-text">Adjunta un foto</span>
+      <app-icon name="cloud-upload" />
+    </button>
+  }
+</app-card-shell>

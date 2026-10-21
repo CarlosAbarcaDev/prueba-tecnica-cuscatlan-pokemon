@@ -1,47 +1,5 @@
 @use 'tokens' as t;
 
-.profile-step {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 77px 90px 80px;
-}
-
-.profile-step__heading {
-  display: flex;
-  align-items: center;
-  gap: t.$space-sm;
-
-  h1 {
-    margin: 0;
-    font-family: t.$font-family-base;
-    font-weight: t.$font-weight-bold;
-    font-size: t.$font-size-h1;
-    color: t.$color-primary-blue;
-  }
-}
-
-.profile-step__back {
-  font-size: t.$font-size-h1;
-  color: t.$color-primary-blue;
-  line-height: 1;
-}
-
-.profile-step__subtitle {
-  margin: t.$space-sm 0 0;
-  font-family: t.$font-family-base;
-  font-size: t.$font-size-body-lg;
-  color: t.$color-text-muted;
-}
-
-.profile-step__layout {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 251px; // matches the Figma gap between the photo card and the form column
-  margin-top: 60px;
-}
-
 .profile-step__form {
   display: flex;
   flex-direction: column;
@@ -49,25 +7,6 @@
   gap: 68px;
   width: 349px;
   max-width: 100%;
-}
-
-.profile-step__form-heading {
-  width: 100%;
-
-  h2 {
-    margin: 0;
-    font-family: t.$font-family-base;
-    font-weight: t.$font-weight-regular;
-    font-size: t.$font-size-h2;
-    color: t.$color-primary-navy;
-  }
-
-  p {
-    margin: t.$space-sm 0 0;
-    font-family: t.$font-family-base;
-    font-size: t.$font-size-body-lg;
-    color: t.$color-text-muted;
-  }
 }
 
 .profile-step__fields {
