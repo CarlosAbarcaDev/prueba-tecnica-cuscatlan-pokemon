@@ -7,12 +7,13 @@ import { DocumentKind, TrainerProfile } from '../../../../core/models/trainer.mo
 import { TrainerStoreService } from '../../../../core/services/trainer-store.service';
 import { DocumentStrategy, resolveDocumentStrategy } from '../../../../core/strategies/document-validation.strategy';
 import { DuiFormatDirective } from '../../../../shared/directives/dui-format.directive';
-import { AppHeaderComponent } from '../../../../shared/components/app-header/app-header';
-import { DatePickerComponent } from '../../../../shared/components/date-picker/date-picker';
-import { FloatingInputComponent } from '../../../../shared/components/floating-input/floating-input';
-import { HobbySelectComponent } from '../../../../shared/components/hobby-select/hobby-select';
-import { PhotoUploadComponent } from '../../../../shared/components/photo-upload/photo-upload';
-import { PrimaryButtonComponent } from '../../../../shared/components/primary-button/primary-button';
+import { PrimaryButtonComponent } from '../../../../shared/atoms/primary-button/primary-button';
+import { DatePickerComponent } from '../../../../shared/molecules/date-picker/date-picker';
+import { FloatingInputComponent } from '../../../../shared/molecules/floating-input/floating-input';
+import { HobbySelectComponent } from '../../../../shared/molecules/hobby-select/hobby-select';
+import { PhotoUploadComponent } from '../../../../shared/molecules/photo-upload/photo-upload';
+import { SectionHeadingComponent } from '../../../../shared/molecules/section-heading/section-heading';
+import { ConfigScreenLayoutComponent } from '../../../../shared/templates/config-screen-layout/config-screen-layout';
 
 interface ProfileForm {
   photoDataUrl: FormControl<string | null>;
@@ -26,7 +27,8 @@ interface ProfileForm {
   selector: 'app-profile-step',
   imports: [
     ReactiveFormsModule,
-    AppHeaderComponent,
+    ConfigScreenLayoutComponent,
+    SectionHeadingComponent,
     DatePickerComponent,
     FloatingInputComponent,
     HobbySelectComponent,
