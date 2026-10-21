@@ -107,7 +107,6 @@ export class ProfileStepComponent {
     };
 
     this.trainerStore.saveProfile(profile);
-    // TODO(module 6): register the pokemon-selection route under /onboarding.
-    void this.router.navigate(['/onboarding/team']);
+    void this.router.navigate(['/onboarding/loading']);
   }
 }

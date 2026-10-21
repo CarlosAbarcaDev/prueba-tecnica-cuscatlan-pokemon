@@ -1,0 +1,24 @@
+<app-config-screen-layout heading="¡Ya casi términamos!" subtitle="Revisa la información, y completa lo solicitado.">
+  <app-trainer-review-card left />
+
+  <div right class="pokemon-select-step">
+    <app-section-heading heading="Pokémon" subtitle="Selecciona 3 Pokémon para que sean parte de tu equipo" />
+
+    <app-search-input placeholder="Buscar por índice, nombre..." (queryChange)="handleSearch($event)" />
+
+    <cdk-virtual-scroll-viewport itemSize="170" class="pokemon-select-step__viewport">
+      <div *cdkVirtualFor="let row of filteredRows()" class="pokemon-select-step__row">
+        @for (pokemon of row; track pokemon.id) {
+          <app-pokemon-card
+            [summary]="pokemon"
+            [selected]="isSelected(pokemon.id)"
+            [disabled]="isDisabled(pokemon.id)"
+            (toggled)="toggleSelection($event)"
+          />
+        }
+      </div>
+    </cdk-virtual-scroll-viewport>
+
+    <app-primary-button type="button" [disabled]="!isTeamFull()" (click)="save()">Guardar</app-primary-button>
+  </div>
+</app-config-screen-layout>
