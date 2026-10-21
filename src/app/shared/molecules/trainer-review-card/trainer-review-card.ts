@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
+import { getDuiValue } from '../../../core/utils/document.util';
 import { TrainerStoreService } from '../../../core/services/trainer-store.service';
 import { CardShellComponent } from '../../atoms/card-shell/card-shell';
 import { IconComponent } from '../../atoms/icon/icon';
@@ -22,9 +23,7 @@ export class TrainerReviewCardComponent {
   protected readonly profile = this.trainerStore.profile;
   protected readonly age = this.trainerStore.age;
 
-  /** Only the DUI ever shows here — a minor's carnet number is never displayed on this card. */
   protected get dui(): string | null {
-    const profile = this.profile();
-    return profile?.documentKind === 'dui' ? profile.documentValue : null;
+    return getDuiValue(this.profile());
   }
 }

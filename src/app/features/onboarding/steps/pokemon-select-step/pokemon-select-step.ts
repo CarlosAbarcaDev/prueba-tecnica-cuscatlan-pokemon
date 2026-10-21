@@ -39,7 +39,10 @@ export class PokemonSelectStepComponent {
 
   private readonly allPokemon = signal<PokemonSummary[]>([]);
   protected readonly query = signal('');
-  protected readonly selectedIds = signal<number[]>([]);
+  // Reopening this step to edit an already-saved team (via Home's "Editar")
+  // starts with its 3 members pre-selected instead of an empty grid; a
+  // first-time run simply has no team yet, so this is `[]` as before.
+  protected readonly selectedIds = signal<number[]>(this.trainerStore.team().map((pokemon) => pokemon.id));
 
   protected readonly filteredRows = computed(() => {
     const filtered = this.pokeApi.filterByIdOrName(this.allPokemon(), this.query());

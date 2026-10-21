@@ -1,0 +1,97 @@
+@use 'tokens' as t;
+
+:host {
+  display: block;
+}
+
+// Mirrors config-screen-layout's centered, symmetric-padding container
+// instead of Figma's literal flush-to-1440px-edge list panel — this app has
+// no other full-bleed sections, so keeping Home consistent with every other
+// screen reads better than reproducing a single edge-bleed quirk tied to one
+// fixed canvas width.
+.home {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 77px 90px 80px;
+}
+
+.home__greeting {
+  display: flex;
+  align-items: center;
+  gap: t.$space-lg;
+
+  h1 {
+    margin: 0;
+    font-family: t.$font-family-base;
+    font-weight: t.$font-weight-bold;
+    font-size: t.$font-size-hero;
+    color: t.$color-black;
+  }
+
+  app-outline-button {
+    width: 134px;
+    height: 30px;
+  }
+}
+
+.home__columns {
+  margin-top: t.$space-xl;
+  display: flex;
+  align-items: flex-start;
+  gap: t.$space-xl;
+}
+
+.home__trainer-card {
+  flex-shrink: 0;
+}
+
+.home__team {
+  flex: 1;
+  min-width: 0;
+}
+
+.home__team-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-lg;
+
+  app-outline-button {
+    width: 134px;
+    height: 30px;
+    flex-shrink: 0;
+  }
+}
+
+.home__team-list {
+  margin-top: t.$space-lg;
+  max-height: 748px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-lg;
+}
+
+// Navbar content projected into app-header's right-side slot.
+.home__nav-user {
+  display: flex;
+  align-items: center;
+  gap: t.$space-xs;
+  height: 36px;
+  padding: 0 t.$space-md;
+  border: 1px solid t.$color-primary-navy;
+  border-radius: t.$radius-button;
+  font-family: t.$font-family-base;
+  font-weight: t.$font-weight-semibold;
+  font-size: t.$font-size-body;
+  color: t.$color-primary-navy;
+
+  app-icon {
+    font-size: 18px;
+  }
+}
+
+.home__nav-search {
+  font-size: 24px;
+  color: t.$color-primary-navy;
+}

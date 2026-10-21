@@ -1,0 +1,30 @@
+<article class="pokemon-stat-card">
+  <div class="pokemon-stat-card__info">
+    <div class="pokemon-stat-card__art">
+      <div class="pokemon-stat-card__shadow" aria-hidden="true"></div>
+      @if (pokemon().spriteUrl; as sprite) {
+        <img [src]="sprite" [alt]="pokemon().name" />
+      } @else {
+        <app-icon name="pokeball" class="pokemon-stat-card__placeholder" />
+      }
+    </div>
+
+    <h3 class="pokemon-stat-card__name">{{ pokemon().name | titlecase }}</h3>
+    <p class="pokemon-stat-card__types">{{ typesLabel() }}</p>
+  </div>
+
+  <dl class="pokemon-stat-card__stats">
+    @for (stat of pokemon().stats; track stat.name) {
+      <div class="pokemon-stat-card__stat-row">
+        <dt>{{ stat.name }}</dt>
+        <dd class="pokemon-stat-card__bar-track">
+          <span
+            class="pokemon-stat-card__bar-fill"
+            [style.width.%]="statPercent(stat)"
+            [style.background]="accentColor()"
+          ></span>
+        </dd>
+      </div>
+    }
+  </dl>
+</article>
