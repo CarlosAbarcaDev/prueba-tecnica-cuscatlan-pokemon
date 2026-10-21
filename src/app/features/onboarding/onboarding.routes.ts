@@ -6,5 +6,6 @@ export const ONBOARDING_ROUTES: Routes = [
     loadComponent: () =>
       import('./steps/profile-step/profile-step').then((m) => m.ProfileStepComponent)
   }
-  // 'team' (pokemon selection) is registered here in module 6.
+  // 'team' (pokemon selection) is registered here in module 6, with
+  // canActivate: [profileRequiredGuard] since it needs a saved profile.
 ];
