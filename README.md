@@ -44,6 +44,10 @@ npm run lint
 ## Arquitectura (resumen)
 
 - Angular standalone (sin NgModules) + Signals para el estado reactivo.
+- **Atomic Design** en `src/app/shared/`: `atoms/` (botón, ícono, card shell), `molecules/` (input flotante,
+  selector de pasatiempo, date picker, photo upload, encabezado de sección), `organisms/` (header) y
+  `templates/` (layout de dos columnas reutilizado por las pantallas de configuración). Las features en
+  `src/app/features/` son las páginas que componen esas piezas.
 - `TrainerStoreService`: única fuente de verdad del perfil y equipo, persistida en `localStorage`.
 - `PokeApiService`: capa de acceso a PokeAPI con cache en memoria (patrón repository).
 - Validación condicional DUI / carnet de minoridad resuelta con el patrón **Strategy**.
