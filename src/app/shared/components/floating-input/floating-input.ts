@@ -36,6 +36,14 @@ export class FloatingInputComponent implements ControlValueAccessor {
   protected value = '';
   protected disabled = false;
 
+  /**
+   * Optional formatting hook, installed imperatively by a co-located
+   * attribute directive (e.g. DuiFormatDirective) rather than passed as a
+   * template input — keeps this component generic while letting specific
+   * fields opt into input masking.
+   */
+  valueTransform: ((raw: string) => string) | null = null;
+
   protected onChange: (value: string) => void = noop;
   protected onTouched: () => void = noop;
 
@@ -56,7 +64,13 @@ export class FloatingInputComponent implements ControlValueAccessor {
   }
 
   protected handleInput(event: Event): void {
-    this.value = (event.target as HTMLInputElement).value;
-    this.onChange(this.value);
+    const target = event.target as HTMLInputElement;
+    let value = target.value;
+    if (this.valueTransform) {
+      value = this.valueTransform(value);
+      target.value = value;
+    }
+    this.value = value;
+    this.onChange(value);
   }
 }
