@@ -87,6 +87,32 @@ export class ProfileStepComponent {
       documentValue.updateValueAndValidity();
       documentValue.enable();
     });
+
+    this.prefillFromExistingProfile();
+  }
+
+  /** Lets "Editar perfil" reopen this step with its saved data instead of a blank form. */
+  private prefillFromExistingProfile(): void {
+    const existing = this.trainerStore.profile();
+    if (!existing) {
+      return;
+    }
+
+    // Set before patching birthDate so the strategy-switch subscriber above
+    // sees a matching kind and does not clear the document value it is
+    // about to receive below.
+    this.previousDocumentKind.set(existing.documentKind);
+
+    this.form.patchValue({
+      photoDataUrl: existing.photoDataUrl,
+      name: existing.name,
+      hobby: existing.favoriteHobby,
+      birthDate: existing.birthDate ?? ''
+    });
+
+    if (existing.documentValue) {
+      this.form.controls.documentValue.setValue(existing.documentValue);
+    }
   }
 
   protected submit(): void {
@@ -107,6 +133,11 @@ export class ProfileStepComponent {
     };
 
     this.trainerStore.saveProfile(profile);
-    void this.router.navigate(['/onboarding/loading']);
+
+    // Editing an already-onboarded trainer only touches these fields — the
+    // team stays as-is, so skip straight back to Home instead of forcing a
+    // re-selection of all 3 Pokémon.
+    const hasExistingTeam = this.trainerStore.team().length === 3;
+    void this.router.navigate([hasExistingTeam ? '/home' : '/onboarding/loading']);
   }
 }

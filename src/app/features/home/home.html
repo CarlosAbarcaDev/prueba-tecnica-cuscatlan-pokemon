@@ -1,0 +1,31 @@
+<app-header>
+  <div class="home__nav-user">
+    <span>{{ profile()?.name }}</span>
+    <app-icon name="chevron-down" />
+  </div>
+  <app-icon name="search" class="home__nav-search" />
+</app-header>
+
+<main class="home">
+  <div class="home__greeting">
+    <h1>¡Hola {{ profile()?.name }}!</h1>
+    <app-outline-button icon="edit" (click)="editProfile()">Editar perfil</app-outline-button>
+  </div>
+
+  <div class="home__columns">
+    <app-trainer-card class="home__trainer-card" />
+
+    <section class="home__team">
+      <div class="home__team-heading">
+        <app-section-heading heading="Mis Pokémon" />
+        <app-outline-button icon="edit" (click)="editTeam()">Editar</app-outline-button>
+      </div>
+
+      <div class="home__team-list">
+        @for (pokemon of team(); track pokemon.id) {
+          <app-pokemon-stat-card [pokemon]="pokemon" />
+        }
+      </div>
+    </section>
+  </div>
+</main>

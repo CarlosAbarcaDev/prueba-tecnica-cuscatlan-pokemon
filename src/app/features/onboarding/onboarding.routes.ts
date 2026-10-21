@@ -25,7 +25,5 @@ export const ONBOARDING_ROUTES: Routes = [
     loadComponent: () => import('./steps/loading-step/loading-step').then((m) => m.LoadingStepComponent),
     canActivate: [profileRequiredGuard],
     data: { label: 'Cargando perfil...', next: '/home' }
-    // '/home' doesn't exist until module 7 — the app-wide wildcard route
-    // sends it back to /onboarding in the meantime.
   }
 ];

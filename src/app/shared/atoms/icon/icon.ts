@@ -1,6 +1,14 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-export type IconName = 'cloud-upload' | 'trash' | 'user' | 'calendar' | 'chevron-down' | 'search' | 'pokeball';
+export type IconName =
+  | 'cloud-upload'
+  | 'trash'
+  | 'user'
+  | 'calendar'
+  | 'chevron-down'
+  | 'search'
+  | 'pokeball'
+  | 'edit';
 
 /**
  * Smallest reusable visual unit for the inline SVG icons the design uses
