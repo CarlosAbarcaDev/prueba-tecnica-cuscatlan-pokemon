@@ -19,15 +19,9 @@
       <div class="profile-step__fields">
         <app-floating-input label="Nombre" [required]="true" formControlName="name" />
         <app-hobby-select formControlName="hobby" />
-        <app-floating-input label="Cumpleaños" type="date" [required]="true" formControlName="birthDate" />
+        <app-date-picker label="Fecha de nacimiento" [required]="true" formControlName="birthDate" />
 
         @if (documentStrategy(); as strategy) {
-          <div class="profile-step__document-type">
-            <span [class.profile-step__document-type--active]="strategy.kind === 'dui'">DUI</span>
-            <span [class.profile-step__document-type--active]="strategy.kind === 'minority-card'">
-              Carnet de Minoridad
-            </span>
-          </div>
           <app-floating-input
             [label]="strategy.label"
             [required]="strategy.required"
