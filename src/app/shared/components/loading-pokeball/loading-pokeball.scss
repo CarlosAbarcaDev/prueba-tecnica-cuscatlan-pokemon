@@ -1,0 +1,88 @@
+@use 'tokens' as t;
+
+:host {
+  display: block;
+}
+
+.loading-pokeball {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-lg;
+}
+
+.loading-pokeball__svg {
+  width: 140px;
+  height: 140px;
+}
+
+.loading-pokeball__top,
+.loading-pokeball__bottom {
+  animation: pokeball-open 1.8s ease-in-out infinite;
+}
+
+.loading-pokeball__bottom {
+  animation-name: pokeball-close;
+}
+
+@keyframes pokeball-open {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes pokeball-close {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+
+.loading-pokeball__drop {
+  fill: t.$color-accent-blue-pale;
+  animation: rain-fall 1.4s linear infinite;
+}
+
+.loading-pokeball__drop--2 {
+  animation-delay: 0.3s;
+}
+
+.loading-pokeball__drop--3 {
+  animation-delay: 0.6s;
+}
+
+.loading-pokeball__drop--4 {
+  animation-delay: 0.9s;
+}
+
+@keyframes rain-fall {
+  0% {
+    transform: translateY(-14px);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
+.loading-pokeball__label {
+  margin: 0;
+  font-family: t.$font-family-base;
+  font-weight: t.$font-weight-bold;
+  font-size: t.$font-size-h1;
+  color: t.$color-primary-blue;
+}

@@ -1,0 +1,29 @@
+<div class="loading-pokeball">
+  <svg viewBox="0 0 120 120" class="loading-pokeball__svg" aria-hidden="true">
+    <defs>
+      <clipPath id="rain-band">
+        <rect x="12" y="48" width="96" height="24" />
+      </clipPath>
+    </defs>
+
+    <g class="loading-pokeball__top">
+      <path d="M12,60 A48,48 0 0 1 108,60 Z" fill="#ee1515" stroke="#1a1a1a" stroke-width="4" />
+    </g>
+
+    <g class="loading-pokeball__bottom">
+      <path d="M12,60 A48,48 0 0 0 108,60 Z" fill="#ffffff" stroke="#1a1a1a" stroke-width="4" />
+    </g>
+
+    <circle cx="60" cy="60" r="13" fill="#ffffff" stroke="#1a1a1a" stroke-width="4" />
+    <circle cx="60" cy="60" r="6" fill="#ffffff" stroke="#1a1a1a" stroke-width="3" />
+
+    <g clip-path="url(#rain-band)" class="loading-pokeball__rain">
+      <rect class="loading-pokeball__drop" x="20" y="48" width="4" height="10" rx="2" />
+      <rect class="loading-pokeball__drop loading-pokeball__drop--2" x="32" y="48" width="4" height="10" rx="2" />
+      <rect class="loading-pokeball__drop loading-pokeball__drop--3" x="88" y="48" width="4" height="10" rx="2" />
+      <rect class="loading-pokeball__drop loading-pokeball__drop--4" x="100" y="48" width="4" height="10" rx="2" />
+    </g>
+  </svg>
+
+  <p class="loading-pokeball__label">{{ label() }}</p>
+</div>
