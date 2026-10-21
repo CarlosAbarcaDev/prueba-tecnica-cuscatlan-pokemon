@@ -4,9 +4,6 @@ Aplicación Angular que consume [PokeAPI](https://pokeapi.co/) para que el usuar
 perfil de entrenador y arme un equipo de 3 Pokémon de la primera generación, siguiendo el diseño
 de Figma "Pokemon-Trainer".
 
-> Estado: en construcción, módulo por módulo (ver sección "Progreso"). Este README se completa en
-> cada entrega.
-
 ## Requisitos
 
 - Node.js `>=24.0.0`
@@ -52,16 +49,3 @@ npm run lint
 - Validación condicional DUI / carnet de minoridad resuelta con el patrón **Strategy**.
 - SCSS con tokens de diseño centralizados en `src/styles/_tokens.scss`.
 - Virtual scroll (Angular CDK) en el grid de selección de Pokémon y en la lista de "Mis Pokémon".
-
-## Progreso
-
-- [x] Módulo 1 — Setup del proyecto, estructura base, servicios core.
-- [x] Módulo 2 — Tokens de diseño desde Figma Dev Mode.
-- [x] Módulo 3 — Paso de carga de foto (validación de formato JPG/JPEG/PNG con alerta visible).
-- [x] Módulo 4 — Paso de datos del entrenador (pasatiempo, cumpleaños, DUI/carnet de minoridad).
-- [ ] Módulo 5 — Pantallas de carga.
-- [ ] Módulo 6 — Selección de equipo Pokémon.
-- [ ] Módulo 7 — Perfil / Home.
-- [ ] Módulo 8 — Manejo de errores.
-- [ ] Módulo 9 — Bonus (swiper, Dockerfile).
-- [ ] Módulo 10 — Release.
