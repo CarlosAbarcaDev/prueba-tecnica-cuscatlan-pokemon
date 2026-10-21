@@ -38,7 +38,10 @@
   margin-top: t.$space-xl;
   display: flex;
   align-items: flex-start;
-  gap: t.$space-xl;
+  // Matches the gap between the two columns in Figma (682 - 525 = 157px),
+  // wider than $space-xl so the trainer card and the team list read as two
+  // clearly separate sections.
+  gap: 157px;
 }
 
 .home__trainer-card {
