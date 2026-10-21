@@ -1,0 +1,23 @@
+@use 'tokens' as t;
+
+.app-header {
+  width: 100%;
+  height: 75px;
+  background: t.$color-surface;
+  box-shadow: t.$shadow-header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 41px;
+}
+
+.app-header__logo {
+  height: 51px;
+  width: auto;
+}
+
+.app-header__content {
+  display: flex;
+  align-items: center;
+  gap: t.$space-lg;
+}
