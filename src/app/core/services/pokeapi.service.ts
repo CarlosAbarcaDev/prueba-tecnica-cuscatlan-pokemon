@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, map, shareReplay } from 'rxjs';
+import { Observable, catchError, map, of, shareReplay } from 'rxjs';
 
 import { PokeApiListResponse, PokeApiPokemonResponse } from '../models/pokeapi-response.model';
 import { PokemonDetail, PokemonStat, PokemonSummary } from '../models/pokemon.model';
@@ -59,6 +59,10 @@ export class PokeApiService {
 
     const request$ = this.http.get<PokeApiPokemonResponse>(`${BASE_URL}/pokemon/${id}`).pipe(
       map((response) => this.toDetail(response)),
+      // A failed request still resolves to a usable (if empty) detail so a
+      // single flaky Pokémon never breaks the whole grid — the card just
+      // falls back to its placeholder sprite, same as a genuinely missing one.
+      catchError(() => of(this.toFallbackDetail(id))),
       shareReplay({ bufferSize: 1, refCount: false })
     );
 
@@ -97,6 +101,11 @@ export class PokeApiService {
       baseValue: entry.base_stat,
       maxValue: STAT_MAX_VALUES[entry.stat.name] ?? entry.base_stat
     };
+  }
+
+  /** Used when a detail request fails: no sprite, no types/stats, but still a valid shape. */
+  private toFallbackDetail(id: number): PokemonDetail {
+    return { id, name: '', spriteUrl: null, types: [], stats: [] };
   }
 
   private extractIdFromUrl(url: string): number {
