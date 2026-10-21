@@ -2,6 +2,7 @@ import { Injectable, computed, signal } from '@angular/core';
 
 import { PokemonDetail } from '../models/pokemon.model';
 import { EMPTY_TRAINER_PROFILE, TrainerProfile, TrainerState } from '../models/trainer.model';
+import { calculateAge } from '../utils/age.util';
 
 const STORAGE_KEY = 'pokemon-trainer-state';
 
@@ -35,7 +36,7 @@ export class TrainerStoreService {
 
   readonly age = computed(() => {
     const birthDate = this.profile()?.birthDate;
-    return birthDate ? this.calculateAge(birthDate) : null;
+    return birthDate ? calculateAge(birthDate) : null;
   });
 
   saveProfile(profile: TrainerProfile): void {
@@ -54,18 +55,5 @@ export class TrainerStoreService {
     const next = updater(this.state());
     this.state.set(next);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-  }
-
-  private calculateAge(isoBirthDate: string): number {
-    const birthDate = new Date(isoBirthDate);
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const hasHadBirthdayThisYear =
-      today.getMonth() > birthDate.getMonth() ||
-      (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
-    if (!hasHadBirthdayThisYear) {
-      age -= 1;
-    }
-    return age;
   }
 }
