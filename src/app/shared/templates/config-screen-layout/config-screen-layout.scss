@@ -5,7 +5,11 @@
 }
 
 .config-screen {
-  max-width: 1200px;
+  // Wide enough for the two columns of every screen that uses this template
+  // to sit side by side without wrapping: the photo/review card (392px) +
+  // gap (251px, matches Figma) + the widest right column so far, the
+  // Pokemon search/grid at 521px, plus the side padding below.
+  max-width: 1360px;
   margin: 0 auto;
   padding: 77px 90px 80px;
 }

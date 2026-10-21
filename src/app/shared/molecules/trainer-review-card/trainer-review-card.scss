@@ -1,8 +1,13 @@
 @use 'tokens' as t;
 
 :host {
+  // Fixed, not 100%: as a direct flex child of config-screen__layout
+  // (alongside the right column), width: 100% would claim the whole row's
+  // width as this item's flex-basis and force a wrap. Match CardShell's
+  // own intrinsic size instead.
   display: block;
-  width: 100%;
+  width: 392px;
+  max-width: 100%;
 }
 
 .trainer-review-card__name {
