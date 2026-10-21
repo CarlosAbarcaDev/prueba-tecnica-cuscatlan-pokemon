@@ -56,7 +56,7 @@ npm run lint
 ## Progreso
 
 - [x] Módulo 1 — Setup del proyecto, estructura base, servicios core.
-- [ ] Módulo 2 — Tokens de diseño desde Figma Dev Mode.
+- [x] Módulo 2 — Tokens de diseño desde Figma Dev Mode.
 - [ ] Módulo 3 — Paso de carga de foto.
 - [ ] Módulo 4 — Paso de datos del entrenador.
 - [ ] Módulo 5 — Pantallas de carga.
