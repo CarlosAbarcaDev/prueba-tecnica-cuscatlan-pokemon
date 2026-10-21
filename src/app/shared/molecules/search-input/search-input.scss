@@ -1,0 +1,42 @@
+@use 'tokens' as t;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  gap: t.$space-sm;
+  height: 36px;
+  padding: 0 t.$space-md;
+  background: t.$color-surface-muted;
+  border-radius: t.$radius-button;
+  box-sizing: border-box;
+  cursor: text;
+
+  app-icon {
+    font-size: 20px;
+    color: t.$color-text-body;
+    flex-shrink: 0;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: none;
+    font-family: t.$font-family-base;
+    font-size: t.$font-size-body-sm;
+    color: t.$color-text-body;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.4);
+    }
+  }
+}

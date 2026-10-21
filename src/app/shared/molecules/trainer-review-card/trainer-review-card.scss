@@ -1,0 +1,69 @@
+@use 'tokens' as t;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.trainer-review-card__name {
+  margin: 0;
+  font-family: t.$font-family-base;
+  font-weight: t.$font-weight-bold;
+  font-size: t.$font-size-h1;
+  color: t.$color-primary-blue;
+  text-align: center;
+}
+
+.trainer-review-card__photo {
+  width: 269px;
+  height: 269px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 4px solid t.$color-surface;
+  overflow: hidden;
+  background: t.$color-avatar-placeholder-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: t.$color-accent-blue-pale;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  app-icon {
+    font-size: 100px;
+  }
+}
+
+.trainer-review-card__facts {
+  width: 100%;
+  margin: 0;
+}
+
+.trainer-review-card__row {
+  display: flex;
+  justify-content: space-between;
+  gap: t.$space-md;
+  font-family: t.$font-family-base;
+  font-size: t.$font-size-h3;
+
+  & + & {
+    margin-top: t.$space-sm;
+  }
+
+  dt {
+    font-weight: t.$font-weight-bold;
+    color: t.$color-text-secondary;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: t.$font-weight-regular;
+    color: t.$color-text-secondary;
+    text-align: right;
+  }
+}

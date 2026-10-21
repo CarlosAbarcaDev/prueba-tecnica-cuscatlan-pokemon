@@ -1,0 +1,28 @@
+@use 'tokens' as t;
+
+.pokemon-select-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-lg;
+  width: 521px;
+  max-width: 100%;
+}
+
+.pokemon-select-step__viewport {
+  width: 100%;
+  height: 480px;
+}
+
+.pokemon-select-step__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: t.$space-lg;
+  padding-bottom: t.$space-lg;
+  box-sizing: border-box;
+}
+
+app-primary-button {
+  width: 222px;
+  max-width: 100%;
+}
