@@ -1,0 +1,12 @@
+<div class="floating-input">
+  <input
+    [id]="inputId"
+    [type]="type()"
+    placeholder=" "
+    [value]="value"
+    [disabled]="disabled"
+    (input)="handleInput($event)"
+    (blur)="onTouched()"
+  />
+  <label [for]="inputId">{{ label() }}{{ required() ? '*' : '' }}</label>
+</div>

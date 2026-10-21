@@ -1,0 +1,20 @@
+@use 'tokens' as t;
+
+.primary-button {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: t.$radius-button;
+  font-family: t.$font-family-base;
+  font-weight: t.$font-weight-semibold;
+  font-size: t.$font-size-body-lg;
+  cursor: pointer;
+  background: t.$color-primary-navy;
+  color: t.$color-surface;
+
+  &:disabled {
+    background: t.$color-surface-disabled;
+    color: t.$color-text-muted;
+    cursor: not-allowed;
+  }
+}

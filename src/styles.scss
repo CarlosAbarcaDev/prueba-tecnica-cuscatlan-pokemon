@@ -1,5 +1,8 @@
 @use 'tokens' as t;
 
+// Poppins is the only font family used across the Figma design, weights 400-800.
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
 html,
 body {
   height: 100%;
@@ -8,8 +11,8 @@ body {
 
 body {
   font-family: t.$font-family-base;
-  color: t.$color-text-primary;
-  background: t.$color-surface-muted;
+  color: t.$color-black;
+  background: t.$color-surface;
 }
 
 * {
