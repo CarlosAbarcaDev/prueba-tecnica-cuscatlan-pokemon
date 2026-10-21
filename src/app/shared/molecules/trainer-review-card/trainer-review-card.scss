@@ -10,6 +10,13 @@
   max-width: 100%;
 }
 
+// Lets the card grow to match a taller sibling column when the page opts in
+// via `align-self: stretch` on this host (see pokemon-select-step) — the
+// host then has a definite height for this to resolve against.
+app-card-shell {
+  height: 100%;
+}
+
 .trainer-review-card__name {
   margin: 0;
   font-family: t.$font-family-base;

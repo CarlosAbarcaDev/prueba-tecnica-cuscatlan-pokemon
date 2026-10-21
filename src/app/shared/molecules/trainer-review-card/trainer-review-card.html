@@ -18,10 +18,10 @@
       <dt>Edad:</dt>
       <dd>{{ age() }} años</dd>
     </div>
-    @if (profile()?.documentValue) {
+    @if (dui; as duiValue) {
       <div class="trainer-review-card__row">
-        <dt>{{ documentLabel }}:</dt>
-        <dd>{{ profile()?.documentValue }}</dd>
+        <dt>DUI:</dt>
+        <dd>{{ duiValue }}</dd>
       </div>
     }
   </dl>
