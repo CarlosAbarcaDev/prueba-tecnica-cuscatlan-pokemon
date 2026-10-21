@@ -1,0 +1,20 @@
+<button
+  type="button"
+  class="pokemon-card"
+  [class.pokemon-card--selected]="selected()"
+  [class.pokemon-card--disabled]="disabled()"
+  [disabled]="disabled()"
+  (click)="handleClick()"
+>
+  <span class="pokemon-card__sprite">
+    @if (spriteUrl(); as sprite) {
+      <img [src]="sprite" [alt]="displayName" />
+    } @else {
+      <app-icon name="pokeball" />
+    }
+  </span>
+  <span class="pokemon-card__badge">
+    <span>{{ displayId }}</span>
+    <span>{{ displayName }}</span>
+  </span>
+</button>
