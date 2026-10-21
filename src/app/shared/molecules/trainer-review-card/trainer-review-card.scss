@@ -1,8 +1,20 @@
 @use 'tokens' as t;
 
 :host {
+  // Fixed, not 100%: as a direct flex child of config-screen__layout
+  // (alongside the right column), width: 100% would claim the whole row's
+  // width as this item's flex-basis and force a wrap. Match CardShell's
+  // own intrinsic size instead.
   display: block;
-  width: 100%;
+  width: 392px;
+  max-width: 100%;
+}
+
+// Lets the card grow to match a taller sibling column when the page opts in
+// via `align-self: stretch` on this host (see pokemon-select-step) — the
+// host then has a definite height for this to resolve against.
+app-card-shell {
+  height: 100%;
 }
 
 .trainer-review-card__name {

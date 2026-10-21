@@ -1,5 +1,12 @@
 @use 'tokens' as t;
 
+// Stretches the review card to match this column's height (down to the
+// Guardar button), instead of the template's default flex-start alignment
+// that leaves it only as tall as its own content.
+[left] {
+  align-self: stretch;
+}
+
 .pokemon-select-step {
   display: flex;
   flex-direction: column;

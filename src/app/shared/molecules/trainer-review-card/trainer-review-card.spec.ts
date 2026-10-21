@@ -32,18 +32,34 @@ describe('TrainerReviewCardComponent', () => {
     expect(text).toContain('04341130-5');
   });
 
-  it('hides the document row entirely when the value is null/empty (minor with no carnet)', () => {
+  it('never shows a document row for a minor, even if a carnet number was entered', () => {
     trainerStore.saveProfile({
       photoDataUrl: null,
       name: 'Ana',
       favoriteHobby: null,
       birthDate: '2015-01-01',
       documentKind: 'minority-card',
+      documentValue: '12345'
+    });
+    fixture.detectChanges();
+
+    const rows = (fixture.nativeElement as HTMLElement).querySelectorAll('.trainer-review-card__row');
+    expect(rows.length).toBe(2); // Pasatiempo + Edad only, never a carnet row
+    expect((fixture.nativeElement as HTMLElement).textContent).not.toContain('12345');
+  });
+
+  it('hides the document row when the adult has no DUI value yet', () => {
+    trainerStore.saveProfile({
+      photoDataUrl: null,
+      name: 'José Sosa',
+      favoriteHobby: null,
+      birthDate: '2000-01-01',
+      documentKind: 'dui',
       documentValue: null
     });
     fixture.detectChanges();
 
     const rows = (fixture.nativeElement as HTMLElement).querySelectorAll('.trainer-review-card__row');
-    expect(rows.length).toBe(2); // Pasatiempo + Edad only, no document row
+    expect(rows.length).toBe(2);
   });
 });

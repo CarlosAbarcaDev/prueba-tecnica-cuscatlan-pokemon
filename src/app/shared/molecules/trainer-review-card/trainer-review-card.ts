@@ -22,7 +22,9 @@ export class TrainerReviewCardComponent {
   protected readonly profile = this.trainerStore.profile;
   protected readonly age = this.trainerStore.age;
 
-  protected get documentLabel(): string {
-    return this.profile()?.documentKind === 'dui' ? 'DUI' : 'Carnet de Minoridad';
+  /** Only the DUI ever shows here — a minor's carnet number is never displayed on this card. */
+  protected get dui(): string | null {
+    const profile = this.profile();
+    return profile?.documentKind === 'dui' ? profile.documentValue : null;
   }
 }
