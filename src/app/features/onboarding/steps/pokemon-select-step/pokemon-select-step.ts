@@ -1,5 +1,5 @@
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 
@@ -7,6 +7,7 @@ import { chunk } from '../../../../core/utils/array.util';
 import { PokemonSummary } from '../../../../core/models/pokemon.model';
 import { PokeApiService } from '../../../../core/services/pokeapi.service';
 import { TrainerStoreService } from '../../../../core/services/trainer-store.service';
+import { OutlineButtonComponent } from '../../../../shared/atoms/outline-button/outline-button';
 import { PrimaryButtonComponent } from '../../../../shared/atoms/primary-button/primary-button';
 import { PokemonCardComponent } from '../../../../shared/molecules/pokemon-card/pokemon-card';
 import { SearchInputComponent } from '../../../../shared/molecules/search-input/search-input';
@@ -16,6 +17,9 @@ import { ConfigScreenLayoutComponent } from '../../../../shared/templates/config
 
 const TEAM_SIZE = 3;
 const ROW_SIZE = 3;
+const ROW_SIZE_MOBILE = 2;
+// Matches $breakpoint-mobile in _tokens.scss.
+const MOBILE_MEDIA_QUERY = '(max-width: 640px)';
 
 @Component({
   selector: 'app-pokemon-select-step',
@@ -26,7 +30,8 @@ const ROW_SIZE = 3;
     SectionHeadingComponent,
     SearchInputComponent,
     PokemonCardComponent,
-    PrimaryButtonComponent
+    PrimaryButtonComponent,
+    OutlineButtonComponent
   ],
   templateUrl: './pokemon-select-step.html',
   styleUrl: './pokemon-select-step.scss',
@@ -45,15 +50,27 @@ export class PokemonSelectStepComponent {
   // first-time run simply has no team yet, so this is `[]` as before.
   protected readonly selectedIds = signal<number[]>(this.trainerStore.team().map((pokemon) => pokemon.id));
 
+  // The CSS grid drops from 3 to 2 columns at the mobile breakpoint, so the
+  // virtual-scroll rows must match: chunking by a fixed 3 while the grid
+  // renders 2 per line staggers every row after the first (2, then 1, then
+  // 2 from the next row, and so on).
+  private readonly mobileQuery = matchMedia(MOBILE_MEDIA_QUERY);
+  private readonly isMobile = signal(this.mobileQuery.matches);
+
   protected readonly filteredRows = computed(() => {
     const filtered = this.pokeApi.filterByIdOrName(this.allPokemon(), this.query());
-    return chunk(filtered, ROW_SIZE);
+    const rowSize = this.isMobile() ? ROW_SIZE_MOBILE : ROW_SIZE;
+    return chunk(filtered, rowSize);
   });
 
   protected readonly isTeamFull = computed(() => this.selectedIds().length === TEAM_SIZE);
 
   constructor() {
     this.loadGenerationOneList();
+
+    const handleChange = (event: MediaQueryListEvent): void => this.isMobile.set(event.matches);
+    this.mobileQuery.addEventListener('change', handleChange);
+    inject(DestroyRef).onDestroy(() => this.mobileQuery.removeEventListener('change', handleChange));
   }
 
   protected retryList(): void {
@@ -87,6 +104,11 @@ export class PokemonSelectStepComponent {
     } else if (current.length < TEAM_SIZE) {
       this.selectedIds.set([...current, id]);
     }
+  }
+
+  /** Clears the in-progress selection so all 3 slots can be picked again from scratch. */
+  protected clearTeam(): void {
+    this.selectedIds.set([]);
   }
 
   protected save(): void {
