@@ -58,9 +58,6 @@
   }
 }
 
-// Small gap on purpose: the actions row sits inside the same 521px-wide
-// column as the grid above it, so Limpiar (150px) + gap + Guardar (222px)
-// must stay narrow enough not to spill past that width.
 .pokemon-select-step__actions {
   display: flex;
   justify-content: center;
@@ -69,7 +66,7 @@
   width: 100%;
 
   app-outline-button {
-    width: 150px;
+    width: 222px;
     height: 50px;
     flex-shrink: 0;
   }
