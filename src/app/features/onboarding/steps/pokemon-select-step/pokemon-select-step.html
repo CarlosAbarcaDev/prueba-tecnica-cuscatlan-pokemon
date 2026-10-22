@@ -4,21 +4,28 @@
   <div right class="pokemon-select-step">
     <app-section-heading heading="Pokémon" subtitle="Selecciona 3 Pokémon para que sean parte de tu equipo" />
 
-    <app-search-input placeholder="Buscar por índice, nombre..." (queryChange)="handleSearch($event)" />
-
-    <cdk-virtual-scroll-viewport itemSize="170" class="pokemon-select-step__viewport">
-      <div *cdkVirtualFor="let row of filteredRows()" class="pokemon-select-step__row">
-        @for (pokemon of row; track pokemon.id) {
-          <app-pokemon-card
-            [summary]="pokemon"
-            [selected]="isSelected(pokemon.id)"
-            [disabled]="isDisabled(pokemon.id)"
-            (toggled)="toggleSelection($event)"
-          />
-        }
+    @if (listError()) {
+      <div class="pokemon-select-step__error">
+        <p>No se pudo cargar la lista de Pokémon.</p>
+        <app-primary-button type="button" (click)="retryList()">Reintentar</app-primary-button>
       </div>
-    </cdk-virtual-scroll-viewport>
+    } @else {
+      <app-search-input placeholder="Buscar por índice, nombre..." (queryChange)="handleSearch($event)" />
 
-    <app-primary-button type="button" [disabled]="!isTeamFull()" (click)="save()">Guardar</app-primary-button>
+      <cdk-virtual-scroll-viewport itemSize="170" class="pokemon-select-step__viewport">
+        <div *cdkVirtualFor="let row of filteredRows()" class="pokemon-select-step__row">
+          @for (pokemon of row; track pokemon.id) {
+            <app-pokemon-card
+              [summary]="pokemon"
+              [selected]="isSelected(pokemon.id)"
+              [disabled]="isDisabled(pokemon.id)"
+              (toggled)="toggleSelection($event)"
+            />
+          }
+        </div>
+      </cdk-virtual-scroll-viewport>
+
+      <app-primary-button type="button" [disabled]="!isTeamFull()" (click)="save()">Guardar</app-primary-button>
+    }
   </div>
 </app-config-screen-layout>

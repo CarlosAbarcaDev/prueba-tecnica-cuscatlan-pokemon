@@ -39,6 +39,7 @@ export class PokemonSelectStepComponent {
 
   private readonly allPokemon = signal<PokemonSummary[]>([]);
   protected readonly query = signal('');
+  protected readonly listError = signal(false);
   // Reopening this step to edit an already-saved team (via Home's "Editar")
   // starts with its 3 members pre-selected instead of an empty grid; a
   // first-time run simply has no team yet, so this is `[]` as before.
@@ -52,7 +53,19 @@ export class PokemonSelectStepComponent {
   protected readonly isTeamFull = computed(() => this.selectedIds().length === TEAM_SIZE);
 
   constructor() {
-    this.pokeApi.getGenerationOneList().subscribe((list) => this.allPokemon.set(list));
+    this.loadGenerationOneList();
+  }
+
+  protected retryList(): void {
+    this.loadGenerationOneList();
+  }
+
+  private loadGenerationOneList(): void {
+    this.listError.set(false);
+    this.pokeApi.getGenerationOneList().subscribe({
+      next: (list) => this.allPokemon.set(list),
+      error: () => this.listError.set(true)
+    });
   }
 
   protected isSelected(id: number): boolean {

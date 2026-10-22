@@ -67,6 +67,24 @@ describe('PokeApiService', () => {
     expect(result?.stats).toEqual([]);
   });
 
+  it('lets a failed generation-list request be retried instead of replaying the same cached error', () => {
+    let firstError: unknown;
+    service.getGenerationOneList().subscribe({ error: (error) => (firstError = error) });
+    httpMock.expectOne('https://pokeapi.co/api/v2/pokemon?limit=151').flush('boom', {
+      status: 500,
+      statusText: 'Server Error'
+    });
+    expect(firstError).toBeTruthy();
+
+    let result: { id: number; name: string }[] = [];
+    service.getGenerationOneList().subscribe((list) => (result = list));
+    httpMock.expectOne('https://pokeapi.co/api/v2/pokemon?limit=151').flush({
+      results: [{ name: 'bulbasaur', url: 'https://pokeapi.co/api/v2/pokemon/1/' }]
+    });
+
+    expect(result).toEqual([{ id: 1, name: 'bulbasaur' }]);
+  });
+
   it('caches a detail request so a repeat subscription does not hit the network again', () => {
     service.getPokemonDetail(1).subscribe();
     httpMock.expectOne('https://pokeapi.co/api/v2/pokemon/1').flush({
