@@ -26,6 +26,8 @@
       }
     </div>
 
-    <app-primary-button type="submit" [disabled]="form.invalid">Continuar</app-primary-button>
+    <app-primary-button type="submit" [disabled]="form.invalid">
+      {{ isEditing() ? 'Guardar' : 'Continuar' }}
+    </app-primary-button>
   </form>
 </app-config-screen-layout>
