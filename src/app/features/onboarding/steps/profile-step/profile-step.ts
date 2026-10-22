@@ -66,6 +66,9 @@ export class ProfileStepComponent {
     return age === null ? null : resolveDocumentStrategy(age);
   });
 
+  /** True once there is a saved profile to prefill from — i.e. "Editar perfil" opened this step, not first-time onboarding. */
+  protected readonly isEditing = computed(() => this.trainerStore.profile() !== null);
+
   constructor() {
     this.form.controls.birthDate.valueChanges.subscribe((value) => this.birthDateValue.set(value));
 
