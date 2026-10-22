@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, map, of, shareReplay } from 'rxjs';
+import { Observable, catchError, map, of, shareReplay, throwError } from 'rxjs';
 
 import { PokeApiListResponse, PokeApiPokemonResponse } from '../models/pokeapi-response.model';
 import { PokemonDetail, PokemonStat, PokemonSummary } from '../models/pokemon.model';
@@ -45,6 +45,15 @@ export class PokeApiService {
         .get<PokeApiListResponse>(`${BASE_URL}/pokemon?limit=${GENERATION_ONE_LIMIT}`)
         .pipe(
           map((response) => response.results.map((entry) => this.toSummary(entry))),
+          // Unlike getPokemonDetail, there is no sensible placeholder for the
+          // whole list — the error is left to propagate so the caller can
+          // show a "Reintentar" state. The cache is cleared on failure so
+          // that retry issues a fresh request instead of replaying the same
+          // cached error forever.
+          catchError((error) => {
+            this.generationOneCache$ = null;
+            return throwError(() => error);
+          }),
           shareReplay({ bufferSize: 1, refCount: false })
         );
     }

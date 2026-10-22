@@ -29,6 +29,29 @@
   box-sizing: border-box;
 }
 
+.pokemon-select-step__error {
+  width: 100%;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-lg;
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-family: t.$font-family-base;
+    font-size: t.$font-size-body-lg;
+    color: t.$color-text-muted;
+  }
+
+  app-primary-button {
+    width: 222px;
+    max-width: 100%;
+  }
+}
+
 app-primary-button {
   width: 222px;
   max-width: 100%;
