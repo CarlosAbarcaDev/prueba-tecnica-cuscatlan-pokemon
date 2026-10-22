@@ -27,6 +27,12 @@
   gap: t.$space-lg;
   padding-bottom: t.$space-lg;
   box-sizing: border-box;
+
+  // Fewer, wider cards instead of 3 cramped columns once the grid itself
+  // has shrunk to a phone-width column.
+  @media (max-width: t.$breakpoint-mobile) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .pokemon-select-step__error {
@@ -52,7 +58,35 @@
   }
 }
 
-app-primary-button {
-  width: 222px;
-  max-width: 100%;
+// Small gap on purpose: the actions row sits inside the same 521px-wide
+// column as the grid above it, so Limpiar (150px) + gap + Guardar (222px)
+// must stay narrow enough not to spill past that width.
+.pokemon-select-step__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: t.$space-sm;
+  width: 100%;
+
+  app-outline-button {
+    width: 150px;
+    height: 50px;
+    flex-shrink: 0;
+  }
+
+  app-primary-button {
+    width: 222px;
+    max-width: 100%;
+  }
+
+  // Stacked and full-width once the two buttons' combined width (150 + 222
+  // + gap) no longer fits a phone-width column.
+  @media (max-width: t.$breakpoint-mobile) {
+    flex-direction: column;
+
+    app-outline-button,
+    app-primary-button {
+      width: 100%;
+    }
+  }
 }

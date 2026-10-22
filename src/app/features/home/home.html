@@ -1,10 +1,31 @@
 <app-header>
   <div class="home__nav-user">
-    <span>{{ profile()?.name }}</span>
-    <app-icon name="chevron-down" />
+    <button type="button" class="home__nav-user-toggle" (click)="toggleUserMenu()">
+      <span>{{ profile()?.name }}</span>
+      <app-icon name="chevron-down" />
+    </button>
+
+    @if (userMenuOpen()) {
+      <div class="home__nav-user-menu">
+        <button type="button" (click)="logout()">Logout</button>
+      </div>
+    }
   </div>
-  <app-icon name="search" class="home__nav-search" />
+
+  @if (isTeamSearchOpen()) {
+    <div class="home__nav-search-wrap">
+      <app-search-input placeholder="Buscar en tu equipo..." (queryChange)="handleTeamSearch($event)" />
+    </div>
+  } @else {
+    <button type="button" class="home__nav-search-toggle" aria-label="Buscar en tu equipo" (click)="openTeamSearch()">
+      <app-icon name="search" />
+    </button>
+  }
 </app-header>
+
+@if (userMenuOpen()) {
+  <button type="button" class="home__backdrop" aria-label="Cerrar menú" (click)="closeUserMenu()"></button>
+}
 
 <main class="home">
   <div class="home__greeting">
@@ -22,8 +43,10 @@
       </div>
 
       <div class="home__team-list">
-        @for (pokemon of team(); track pokemon.id) {
+        @for (pokemon of filteredTeam(); track pokemon.id) {
           <app-pokemon-stat-card [pokemon]="pokemon" />
+        } @empty {
+          <p class="home__team-empty">Ningún Pokémon coincide con la búsqueda.</p>
         }
       </div>
     </section>

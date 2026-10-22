@@ -15,12 +15,3 @@ export interface TrainerState {
   profile: TrainerProfile | null;
   team: PokemonDetail[];
 }
-
-export const EMPTY_TRAINER_PROFILE: TrainerProfile = {
-  photoDataUrl: null,
-  name: '',
-  favoriteHobby: null,
-  birthDate: null,
-  documentKind: null,
-  documentValue: null
-};

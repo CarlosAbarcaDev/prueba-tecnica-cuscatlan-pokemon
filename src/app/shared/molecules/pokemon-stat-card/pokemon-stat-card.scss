@@ -15,6 +15,15 @@
   display: flex;
   align-items: flex-start;
   gap: t.$space-xl;
+
+  // Sprite + name above the stats instead of side by side — the fixed info
+  // column and stat-label width don't leave enough room for the bars once
+  // the card itself gets this narrow.
+  @media (max-width: t.$breakpoint-mobile) {
+    flex-direction: column;
+    align-items: center;
+    gap: t.$space-md;
+  }
 }
 
 .pokemon-stat-card__info {
@@ -24,6 +33,10 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+
+  @media (max-width: t.$breakpoint-mobile) {
+    width: 100%;
+  }
 }
 
 .pokemon-stat-card__art {
@@ -79,6 +92,8 @@
 
 .pokemon-stat-card__stats {
   flex: 1;
+  min-width: 0;
+  width: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -97,6 +112,11 @@
     font-family: t.$font-family-base;
     font-size: t.$font-size-body-lg;
     color: t.$color-text-secondary;
+
+    @media (max-width: t.$breakpoint-mobile) {
+      width: 110px;
+      font-size: t.$font-size-body;
+    }
   }
 }
 

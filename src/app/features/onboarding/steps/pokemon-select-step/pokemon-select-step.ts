@@ -7,6 +7,7 @@ import { chunk } from '../../../../core/utils/array.util';
 import { PokemonSummary } from '../../../../core/models/pokemon.model';
 import { PokeApiService } from '../../../../core/services/pokeapi.service';
 import { TrainerStoreService } from '../../../../core/services/trainer-store.service';
+import { OutlineButtonComponent } from '../../../../shared/atoms/outline-button/outline-button';
 import { PrimaryButtonComponent } from '../../../../shared/atoms/primary-button/primary-button';
 import { PokemonCardComponent } from '../../../../shared/molecules/pokemon-card/pokemon-card';
 import { SearchInputComponent } from '../../../../shared/molecules/search-input/search-input';
@@ -26,7 +27,8 @@ const ROW_SIZE = 3;
     SectionHeadingComponent,
     SearchInputComponent,
     PokemonCardComponent,
-    PrimaryButtonComponent
+    PrimaryButtonComponent,
+    OutlineButtonComponent
   ],
   templateUrl: './pokemon-select-step.html',
   styleUrl: './pokemon-select-step.scss',
@@ -87,6 +89,11 @@ export class PokemonSelectStepComponent {
     } else if (current.length < TEAM_SIZE) {
       this.selectedIds.set([...current, id]);
     }
+  }
+
+  /** Clears the in-progress selection so all 3 slots can be picked again from scratch. */
+  protected clearTeam(): void {
+    this.selectedIds.set([]);
   }
 
   protected save(): void {

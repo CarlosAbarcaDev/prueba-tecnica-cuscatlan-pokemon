@@ -25,7 +25,10 @@
         </div>
       </cdk-virtual-scroll-viewport>
 
-      <app-primary-button type="button" [disabled]="!isTeamFull()" (click)="save()">Guardar</app-primary-button>
+      <div class="pokemon-select-step__actions">
+        <app-outline-button icon="trash" type="button" (click)="clearTeam()">Limpiar</app-outline-button>
+        <app-primary-button type="button" [disabled]="!isTeamFull()" (click)="save()">Guardar</app-primary-button>
+      </div>
     }
   </div>
 </app-config-screen-layout>

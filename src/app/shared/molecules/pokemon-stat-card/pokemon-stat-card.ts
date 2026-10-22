@@ -2,29 +2,8 @@ import { TitleCasePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 import { PokemonDetail, PokemonStat } from '../../../core/models/pokemon.model';
+import { translatePokemonType } from '../../../core/utils/pokemon-type.util';
 import { IconComponent } from '../../atoms/icon/icon';
-
-/** Spanish display names for PokeAPI's English type slugs — the rest of the UI is Spanish throughout. */
-const TYPE_LABELS_ES: Record<string, string> = {
-  normal: 'Normal',
-  fire: 'Fuego',
-  water: 'Agua',
-  electric: 'Eléctrico',
-  grass: 'Planta',
-  ice: 'Hielo',
-  fighting: 'Lucha',
-  poison: 'Veneno',
-  ground: 'Tierra',
-  flying: 'Volador',
-  psychic: 'Psíquico',
-  bug: 'Bicho',
-  rock: 'Roca',
-  ghost: 'Fantasma',
-  dragon: 'Dragón',
-  dark: 'Siniestro',
-  steel: 'Acero',
-  fairy: 'Hada'
-};
 
 /** Progress-bar accent color keyed by the same English type slugs, mirroring $color-type-* in _tokens.scss. */
 const TYPE_COLORS: Record<string, string> = {
@@ -66,11 +45,7 @@ const DEFAULT_TYPE_COLOR = '#a8a878';
 export class PokemonStatCardComponent {
   readonly pokemon = input.required<PokemonDetail>();
 
-  protected readonly typesLabel = computed(() =>
-    this.pokemon()
-      .types.map((type) => TYPE_LABELS_ES[type] ?? type)
-      .join('/')
-  );
+  protected readonly typesLabel = computed(() => this.pokemon().types.map(translatePokemonType).join('/'));
 
   protected readonly accentColor = computed(() => {
     const [primaryType] = this.pokemon().types;

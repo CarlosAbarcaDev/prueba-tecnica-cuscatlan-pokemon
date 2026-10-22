@@ -77,3 +77,9 @@ $shadow-medium: 0 8px 28px rgba(120, 177, 181, 0.1); // "Medium" effect style
 $shadow-header: 0 8px 14px rgba(120, 177, 181, 0.1);
 $shadow-menu: 0 8px 28px rgba(120, 177, 181, 0.06); // "Menu Shadow" effect style
 $shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.15); // "Suave" effect style
+
+// Breakpoints — the Figma canvas itself is a single 1440px desktop frame,
+// so these aren't from Dev Mode; they're max-width cutoffs chosen to cover
+// the 3 device classes the app needs to adapt to (desktop/tablet/mobile).
+$breakpoint-tablet: 1024px;
+$breakpoint-mobile: 640px;

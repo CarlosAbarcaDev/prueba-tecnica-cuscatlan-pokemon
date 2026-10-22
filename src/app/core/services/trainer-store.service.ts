@@ -1,7 +1,7 @@
 import { Injectable, computed, signal } from '@angular/core';
 
 import { PokemonDetail } from '../models/pokemon.model';
-import { EMPTY_TRAINER_PROFILE, TrainerProfile, TrainerState } from '../models/trainer.model';
+import { TrainerProfile, TrainerState } from '../models/trainer.model';
 import { calculateAge } from '../utils/age.util';
 
 const STORAGE_KEY = 'pokemon-trainer-state';
@@ -47,8 +47,9 @@ export class TrainerStoreService {
     this.update((current) => ({ ...current, team }));
   }
 
-  startNewTrainer(): void {
-    this.update(() => ({ profile: { ...EMPTY_TRAINER_PROFILE }, team: [] }));
+  /** Wipes the saved profile and team entirely — used by Home's "Logout" so the next visitor starts a fresh onboarding. */
+  logout(): void {
+    this.update(() => ({ profile: null, team: [] }));
   }
 
   private update(updater: (current: TrainerState) => TrainerState): void {
