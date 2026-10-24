@@ -1,17 +1,27 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, input, output, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  input,
+  output,
+  signal
+} from '@angular/core';
 
 import { PokemonSummary } from '../../../core/models/pokemon.model';
 import { PokeApiService } from '../../../core/services/pokeapi.service';
 import { IconComponent } from '../../atoms/icon/icon';
 
 /**
- * One cell in the Pokémon selection grid. Fetches its own detail (sprite)
- * on init rather than the page doing it — since Angular CDK's virtual
- * scroll only instantiates cards for rows currently in view (+ buffer),
- * this alone gives "fetch as it scrolls into view" with no extra plumbing.
- * A null sprite (still loading, missing, or the request failed — see
- * PokeApiService.getPokemonDetail) always renders the same pokeball
- * placeholder instead of a broken image.
+ * One cell in the Pokémon selection grid. Every card in the grid is mounted
+ * at once (the grid pages through rows with Swiper rather than virtualizing
+ * them), so fetching a detail on init would fire all 151 requests at once —
+ * instead, an IntersectionObserver fetches a card's own detail the first
+ * time it actually scrolls/pages into view. A null sprite (still loading,
+ * missing, or the request failed — see PokeApiService.getPokemonDetail)
+ * always renders the same pokeball placeholder instead of a broken image.
  */
 @Component({
   selector: 'app-pokemon-card',
@@ -20,8 +30,10 @@ import { IconComponent } from '../../atoms/icon/icon';
   styleUrl: './pokemon-card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PokemonCardComponent implements OnInit {
+export class PokemonCardComponent implements AfterViewInit {
   private readonly pokeApi = inject(PokeApiService);
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private readonly destroyRef = inject(DestroyRef);
 
   readonly summary = input.required<PokemonSummary>();
   readonly selected = input(false);
@@ -31,7 +43,26 @@ export class PokemonCardComponent implements OnInit {
   protected readonly spriteUrl = signal<string | null>(null);
   protected readonly types = signal<string[]>([]);
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    if (typeof IntersectionObserver === 'undefined') {
+      this.fetchDetail();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          this.fetchDetail();
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(this.elementRef.nativeElement);
+    this.destroyRef.onDestroy(() => observer.disconnect());
+  }
+
+  private fetchDetail(): void {
     this.pokeApi.getPokemonDetail(this.summary().id).subscribe((detail) => {
       this.spriteUrl.set(detail.spriteUrl);
       this.types.set(detail.types);

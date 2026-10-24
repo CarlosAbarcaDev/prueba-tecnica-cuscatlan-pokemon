@@ -12,18 +12,32 @@
     } @else {
       <app-search-input placeholder="Buscar por índice, nombre..." (queryChange)="handleSearch($event)" />
 
-      <cdk-virtual-scroll-viewport itemSize="170" class="pokemon-select-step__viewport">
-        <div *cdkVirtualFor="let row of filteredRows()" class="pokemon-select-step__row">
-          @for (pokemon of row; track pokemon.id) {
-            <app-pokemon-card
-              [summary]="pokemon"
-              [selected]="isSelected(pokemon.id)"
-              [disabled]="isDisabled(pokemon.id)"
-              (toggled)="toggleSelection($event)"
-            />
+      @if (filteredRows().length > 0) {
+        <swiper-container
+          class="pokemon-select-step__swiper"
+          navigation="true"
+          pagination="true"
+          pagination-type="fraction"
+          space-between="16"
+        >
+          @for (row of filteredRows(); track $index) {
+            <swiper-slide>
+              <div class="pokemon-select-step__row">
+                @for (pokemon of row; track pokemon.id) {
+                  <app-pokemon-card
+                    [summary]="pokemon"
+                    [selected]="isSelected(pokemon.id)"
+                    [disabled]="isDisabled(pokemon.id)"
+                    (toggled)="toggleSelection($event)"
+                  />
+                }
+              </div>
+            </swiper-slide>
           }
-        </div>
-      </cdk-virtual-scroll-viewport>
+        </swiper-container>
+      } @else {
+        <p class="pokemon-select-step__no-results">Ningún Pokémon coincide con la búsqueda.</p>
+      }
 
       <div class="pokemon-select-step__actions">
         <app-outline-button icon="trash" type="button" (click)="clearTeam()">Limpiar</app-outline-button>

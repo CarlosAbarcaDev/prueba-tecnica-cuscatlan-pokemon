@@ -16,16 +16,32 @@
   max-width: 100%;
 }
 
-.pokemon-select-step__viewport {
+.pokemon-select-step__swiper {
   width: 100%;
-  height: 480px;
+  height: 230px;
+  padding-bottom: t.$space-lg;
+  --swiper-navigation-color: #{t.$color-primary-navy};
+  --swiper-navigation-size: 20px;
+  --swiper-pagination-color: #{t.$color-primary-navy};
+}
+
+.pokemon-select-step__no-results {
+  width: 100%;
+  min-height: 230px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: t.$font-family-base;
+  color: t.$color-text-muted;
 }
 
 .pokemon-select-step__row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: t.$space-lg;
-  padding-bottom: t.$space-lg;
+  height: 100%;
   box-sizing: border-box;
 
   // Fewer, wider cards instead of 3 cramped columns once the grid itself

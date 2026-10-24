@@ -98,13 +98,14 @@
   }
 }
 
-.home__team-list {
+.home__team-swiper {
   margin-top: t.$space-lg;
-  max-height: 748px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: t.$space-lg;
+  padding-bottom: t.$space-xl;
+  --swiper-navigation-color: #{t.$color-primary-navy};
+  --swiper-navigation-size: 20px;
+  --swiper-pagination-color: #{t.$color-primary-navy};
+  --swiper-pagination-bullet-inactive-color: #{t.$color-accent-blue-pale};
+  --swiper-pagination-bullet-inactive-opacity: 1;
 }
 
 // Navbar content projected into app-header's right-side slot.
