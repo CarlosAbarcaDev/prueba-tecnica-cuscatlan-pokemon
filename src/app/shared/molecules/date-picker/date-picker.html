@@ -1,0 +1,71 @@
+<div class="date-picker">
+  <button
+    type="button"
+    class="date-picker__trigger"
+    [class.date-picker__trigger--filled]="!!value"
+    [disabled]="disabled"
+    (click)="togglePanel()"
+  >
+    <span class="date-picker__value">{{ value ? formatDisplay(value) : '' }}</span>
+    <span class="date-picker__label">{{ label() }}{{ required() ? '*' : '' }}</span>
+    <app-icon name="calendar" class="date-picker__icon" />
+  </button>
+
+  @if (isOpen) {
+    <div class="date-picker__panel">
+      @if (panelMode === 'days') {
+        <div class="date-picker__header">
+          <button type="button" class="date-picker__month-label" (click)="toggleYearPicker($event)">
+            {{ monthLabel() }}
+            <app-icon name="chevron-down" />
+          </button>
+          <div class="date-picker__nav">
+            <button type="button" aria-label="Mes anterior" (click)="goToPreviousMonth($event)">‹</button>
+            <button
+              type="button"
+              aria-label="Mes siguiente"
+              [disabled]="isNextMonthDisabled()"
+              (click)="goToNextMonth($event)"
+            >
+              ›
+            </button>
+          </div>
+        </div>
+
+        <div class="date-picker__weekdays">
+          @for (initial of weekdayInitials; track $index) {
+            <span>{{ initial }}</span>
+          }
+        </div>
+
+        <div class="date-picker__days">
+          @for (cell of days(); track cell.date.getTime()) {
+            <button
+              type="button"
+              class="date-picker__day"
+              [class.date-picker__day--muted]="!cell.inCurrentMonth"
+              [class.date-picker__day--selected]="isSelected(cell)"
+              [disabled]="cell.disabled"
+              (click)="selectDay(cell, $event)"
+            >
+              {{ cell.day }}
+            </button>
+          }
+        </div>
+      } @else {
+        <div class="date-picker__years">
+          @for (year of years(); track year) {
+            <button
+              type="button"
+              class="date-picker__year"
+              [class.date-picker__year--selected]="year === viewYear()"
+              (click)="selectYear(year, $event)"
+            >
+              {{ year }}
+            </button>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

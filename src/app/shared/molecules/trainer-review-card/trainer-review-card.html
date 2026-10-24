@@ -1,0 +1,28 @@
+<app-card-shell>
+  <p class="trainer-review-card__name">{{ profile()?.name }}</p>
+
+  <div class="trainer-review-card__photo">
+    @if (profile()?.photoDataUrl; as photo) {
+      <img [src]="photo" alt="Foto de perfil" />
+    } @else {
+      <app-icon name="user" />
+    }
+  </div>
+
+  <dl class="trainer-review-card__facts">
+    <div class="trainer-review-card__row">
+      <dt>Pasatiempo:</dt>
+      <dd>{{ profile()?.favoriteHobby || '—' }}</dd>
+    </div>
+    <div class="trainer-review-card__row">
+      <dt>Edad:</dt>
+      <dd>{{ age() }} años</dd>
+    </div>
+    @if (dui; as duiValue) {
+      <div class="trainer-review-card__row">
+        <dt>DUI:</dt>
+        <dd>{{ duiValue }}</dd>
+      </div>
+    }
+  </dl>
+</app-card-shell>

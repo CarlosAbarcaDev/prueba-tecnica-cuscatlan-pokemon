@@ -1,0 +1,31 @@
+@use 'tokens' as t;
+
+// No default size here: the host has no intrinsic width/height, same as
+// PrimaryButtonComponent — callers size it from outside.
+:host {
+  display: block;
+}
+
+.outline-button {
+  width: 100%;
+  height: 100%;
+  border: 1px solid t.$color-primary-navy;
+  border-radius: t.$radius-button;
+  background: transparent;
+  color: t.$color-primary-navy;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.outline-button__icon {
+  font-size: 18px;
+}
+
+.outline-button__label {
+  font-family: t.$font-family-base;
+  font-weight: t.$font-weight-semibold;
+  font-size: t.$font-size-label;
+}

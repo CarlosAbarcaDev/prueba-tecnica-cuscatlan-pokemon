@@ -1,0 +1,81 @@
+@use 'tokens' as t;
+
+:host {
+  // Fixed, not 100%: as a direct flex child of config-screen__layout
+  // (alongside the right column), width: 100% would claim the whole row's
+  // width as this item's flex-basis and force a wrap. Match CardShell's
+  // own intrinsic size instead.
+  display: block;
+  width: 392px;
+  max-width: 100%;
+}
+
+// Lets the card grow to match a taller sibling column when the page opts in
+// via `align-self: stretch` on this host (see pokemon-select-step) — the
+// host then has a definite height for this to resolve against.
+app-card-shell {
+  height: 100%;
+}
+
+.trainer-review-card__name {
+  margin: 0;
+  font-family: t.$font-family-base;
+  font-weight: t.$font-weight-bold;
+  font-size: t.$font-size-h1;
+  color: t.$color-primary-blue;
+  text-align: center;
+}
+
+.trainer-review-card__photo {
+  width: 269px;
+  height: 269px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 4px solid t.$color-surface;
+  overflow: hidden;
+  background: t.$color-avatar-placeholder-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: t.$color-accent-blue-pale;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  app-icon {
+    font-size: 100px;
+  }
+}
+
+.trainer-review-card__facts {
+  width: 100%;
+  margin: 0;
+}
+
+.trainer-review-card__row {
+  display: flex;
+  justify-content: space-between;
+  gap: t.$space-md;
+  font-family: t.$font-family-base;
+  font-size: t.$font-size-h3;
+
+  & + & {
+    margin-top: t.$space-sm;
+  }
+
+  dt {
+    font-weight: t.$font-weight-bold;
+    color: t.$color-text-secondary;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: t.$font-weight-regular;
+    color: t.$color-text-secondary;
+    text-align: right;
+  }
+}

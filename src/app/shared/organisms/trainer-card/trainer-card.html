@@ -1,0 +1,31 @@
+<app-card-shell>
+  <div class="trainer-card__header">
+    <span class="trainer-card__title">Entrenador</span>
+    <img class="trainer-card__badge" src="/trainer-badge.png" alt="" aria-hidden="true" />
+  </div>
+
+  <div class="trainer-card__photo">
+    @if (profile()?.photoDataUrl; as photo) {
+      <img [src]="photo" alt="Foto de perfil" />
+    } @else {
+      <app-icon name="user" />
+    }
+  </div>
+
+  <dl class="trainer-card__facts">
+    <div class="trainer-card__row">
+      <dt>Pasatiempo:</dt>
+      <dd>{{ profile()?.favoriteHobby || '—' }}</dd>
+    </div>
+    <div class="trainer-card__row">
+      <dt>Edad:</dt>
+      <dd>{{ age() }} años</dd>
+    </div>
+    @if (dui; as duiValue) {
+      <div class="trainer-card__row">
+        <dt>DUI:</dt>
+        <dd>{{ duiValue }}</dd>
+      </div>
+    }
+  </dl>
+</app-card-shell>

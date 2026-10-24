@@ -1,0 +1,222 @@
+@use 'tokens' as t;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.date-picker {
+  position: relative;
+  width: 100%;
+}
+
+.date-picker__trigger {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  padding: 0 44px 0 18px;
+  border: 1px solid t.$color-text-muted;
+  border-radius: t.$radius-button;
+  background: t.$color-surface;
+  cursor: pointer;
+  text-align: left;
+  font-family: t.$font-family-base;
+
+  &:disabled {
+    cursor: not-allowed;
+    background: t.$color-surface-muted;
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: t.$color-primary-navy;
+  }
+}
+
+.date-picker__value {
+  display: block;
+  font-size: t.$font-size-body;
+  color: t.$color-text-body;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.date-picker__label {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 3px;
+  font-size: t.$font-size-body;
+  color: t.$color-text-muted;
+  background: transparent;
+  pointer-events: none;
+  transition:
+    top 0.15s ease,
+    font-size 0.15s ease;
+}
+
+.date-picker__trigger--filled {
+  .date-picker__value {
+    margin-top: 14px;
+  }
+
+  .date-picker__label {
+    top: 0;
+    font-size: t.$font-size-label;
+    font-weight: t.$font-weight-bold;
+    color: t.$color-primary-navy;
+    background: t.$color-surface;
+  }
+}
+
+.date-picker__icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: t.$color-text-muted;
+  pointer-events: none;
+}
+
+.date-picker__panel {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 280px;
+  padding: t.$space-md;
+  background: t.$color-surface;
+  border-radius: t.$radius-card;
+  box-shadow: t.$shadow-menu;
+  box-sizing: border-box;
+}
+
+.date-picker__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: t.$space-sm;
+}
+
+.date-picker__month-label {
+  display: flex;
+  align-items: center;
+  gap: t.$space-xs;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: t.$font-family-base;
+  font-weight: t.$font-weight-bold;
+  font-size: t.$font-size-body-sm;
+  color: t.$color-black;
+
+  app-icon {
+    font-size: 14px;
+    color: t.$color-text-muted;
+  }
+}
+
+.date-picker__nav {
+  display: flex;
+  gap: t.$space-xs;
+
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: t.$color-text-muted;
+    width: 24px;
+    height: 24px;
+    line-height: 1;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.35;
+    }
+  }
+}
+
+.date-picker__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: t.$space-xs;
+
+  span {
+    text-align: center;
+    font-size: 0.7rem;
+    color: t.$color-text-muted;
+  }
+}
+
+.date-picker__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.date-picker__day {
+  aspect-ratio: 1;
+  border: none;
+  background: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: t.$font-family-base;
+  font-size: t.$font-size-body-sm;
+  color: t.$color-black;
+
+  &:hover {
+    background: t.$color-surface-muted;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: t.$color-accent-blue-pale;
+
+    &:hover {
+      background: none;
+    }
+  }
+}
+
+.date-picker__day--muted {
+  color: t.$color-accent-blue-pale;
+}
+
+.date-picker__day--selected {
+  background: t.$color-calendar-accent !important;
+  color: t.$color-surface;
+  font-weight: t.$font-weight-bold;
+}
+
+.date-picker__years {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: t.$space-xs;
+  max-height: 240px;
+  overflow-y: auto;
+
+  button {
+    border: none;
+    border-radius: t.$radius-button;
+    padding: t.$space-xs;
+    background: none;
+    cursor: pointer;
+    font-family: t.$font-family-base;
+    font-size: t.$font-size-body-sm;
+    color: t.$color-black;
+
+    &:hover {
+      background: t.$color-surface-muted;
+    }
+  }
+}
+
+.date-picker__year--selected {
+  background: t.$color-calendar-accent !important;
+  color: t.$color-surface !important;
+}

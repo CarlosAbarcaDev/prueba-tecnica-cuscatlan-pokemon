@@ -1,0 +1,88 @@
+@use 'tokens' as t;
+
+// Stretches the review card to match this column's height (down to the
+// Guardar button), instead of the template's default flex-start alignment
+// that leaves it only as tall as its own content.
+[left] {
+  align-self: stretch;
+}
+
+.pokemon-select-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-lg;
+  width: 521px;
+  max-width: 100%;
+}
+
+.pokemon-select-step__viewport {
+  width: 100%;
+  height: 480px;
+}
+
+.pokemon-select-step__row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: t.$space-lg;
+  padding-bottom: t.$space-lg;
+  box-sizing: border-box;
+
+  // Fewer, wider cards instead of 3 cramped columns once the grid itself
+  // has shrunk to a phone-width column.
+  @media (max-width: t.$breakpoint-mobile) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.pokemon-select-step__error {
+  width: 100%;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-lg;
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-family: t.$font-family-base;
+    font-size: t.$font-size-body-lg;
+    color: t.$color-text-muted;
+  }
+
+  app-primary-button {
+    width: 222px;
+    max-width: 100%;
+  }
+}
+
+.pokemon-select-step__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: t.$space-sm;
+  width: 100%;
+
+  app-outline-button {
+    width: 222px;
+    height: 50px;
+    flex-shrink: 0;
+  }
+
+  app-primary-button {
+    width: 222px;
+    max-width: 100%;
+  }
+
+  // Stacked and full-width once the two buttons no longer fit a phone-width column.
+  @media (max-width: t.$breakpoint-mobile) {
+    flex-direction: column;
+
+    app-outline-button,
+    app-primary-button {
+      width: 100%;
+    }
+  }
+}

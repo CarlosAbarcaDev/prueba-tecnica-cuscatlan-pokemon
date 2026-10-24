@@ -1,0 +1,33 @@
+<app-config-screen-layout heading="¡Hola! Configuremos tu perfil" subtitle="Queremos conocerte mejor.">
+  <div left class="profile-step__photo" [formGroup]="form">
+    <app-photo-upload formControlName="photoDataUrl" />
+  </div>
+
+  <form right class="profile-step__form" [formGroup]="form" (ngSubmit)="submit()">
+    <app-section-heading
+      heading="Tu información"
+      subtitle="Completa la siguiente información para completar tu perfil"
+    />
+
+    <div class="profile-step__fields">
+      <app-floating-input label="Nombre" [required]="true" formControlName="name" />
+      <app-hobby-select formControlName="hobby" />
+      <app-date-picker label="Fecha de nacimiento" [required]="true" formControlName="birthDate" />
+
+      @if (documentStrategy(); as strategy) {
+        <app-floating-input
+          [label]="strategy.label"
+          [required]="strategy.required"
+          [appDuiFormat]="strategy.autoFormat"
+          formControlName="documentValue"
+        />
+      } @else {
+        <app-floating-input label="Documento" formControlName="documentValue" />
+      }
+    </div>
+
+    <app-primary-button type="submit" [disabled]="form.invalid">
+      {{ isEditing() ? 'Guardar' : 'Continuar' }}
+    </app-primary-button>
+  </form>
+</app-config-screen-layout>

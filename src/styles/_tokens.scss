@@ -1,0 +1,84 @@
+// Design tokens pulled from the Figma file.
+
+// Colors (Figma variable names in comments)
+$color-primary-navy: #01426a; // Primary/Azul/Azul 00 — headings, borders, buttons, badges
+$color-primary-blue: #185a7d; // Primary/Azul/Azul 10 — wizard hero headings, card titles
+$color-accent-blue: #2c85bc; // Primary/Azul/Azul 30 — links, water-type accent
+$color-accent-blue-pale: #9bb8d3; // Primary/Azul/Azul 40 — dashed upload border
+$color-yellow: #ffc600; // Primary/Naranja/Naranja 20 — trainer card, fire-type accent
+$color-text-muted: #868686; // Neutro/Gris 40 — subtext, disabled button text, borders
+$color-text-body: #454545; // Neutro/Negro 50 — input values
+$color-text-secondary: #4b4b4b; // label/value text on trainer + pokemon cards
+$color-black: #000000;
+$color-surface: #ffffff; // Neutro/Blanco 00
+$color-surface-muted: #f2f2f2; // Neutro/Gris 10 — pokemon list card background
+$color-surface-disabled: #e6e6e6; // Neutro/Gris 20 — disabled button background
+$color-track-bg: #f0f0f3; // neumorphic progress track base
+$color-track-bg-inner: #eeeeee;
+$color-danger: #e53935; // delete/trash icon
+$color-avatar-placeholder-bg: #e7eff5; // empty photo circle background
+$color-calendar-accent: #5c2ee8; // approximated visually, not an exact design token
+
+// Pokémon type accent colors for stat bars. Only grass/fire/water were confirmed
+// directly from Figma; the rest follow the same palette family as a reasonable
+// extension for the other generation-1 types.
+$color-type-normal: #a8a878;
+$color-type-fire: #ffc600; // confirmed in Figma (Charmander)
+$color-type-water: #2c85bc; // confirmed in Figma (Squirtle)
+$color-type-electric: #f8d030;
+$color-type-grass: #7ed876; // confirmed in Figma (Bulbasaur)
+$color-type-ice: #98d8d8;
+$color-type-fighting: #c03028;
+$color-type-poison: #a040a0;
+$color-type-ground: #e0c068;
+$color-type-flying: #a890f0;
+$color-type-psychic: #f85888;
+$color-type-bug: #a8b820;
+$color-type-rock: #b8a038;
+$color-type-ghost: #705898;
+$color-type-dragon: #7038f8;
+$color-type-dark: #705848;
+$color-type-steel: #b8b8d0;
+$color-type-fairy: #ee99ac;
+
+// Typography — Poppins across every screen (headings, body, buttons alike).
+$font-family-base: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+$font-size-hero: 2.5rem; // 40px — "¡Hola José!"
+$font-size-h1: 2.1875rem; // 35px — wizard hero headings
+$font-size-h2: 1.875rem; // 30px — section headings, pokemon names
+$font-size-h3: 1.5rem; // 24px — trainer card labels/values
+$font-size-body-lg: 1.125rem; // 18px — subtext, pokemon type, button text
+$font-size-body: 0.9375rem; // 15px — input values
+$font-size-body-sm: 0.875rem; // 14px — filename, small buttons
+$font-size-label: 0.75rem; // 12px — floating input labels, badges
+
+// Spacing scale
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 1.5rem;
+$space-xl: 2.5rem;
+
+// Radii
+$radius-button: 0.625rem; // 10px — inputs, buttons, search bar
+$radius-card: 0.9375rem; // 15px — pokemon list card
+$radius-card-rounded: 3.125rem; // 50px — big yellow trainer card
+$radius-badge: 1.25rem; // 20px — pokemon selection card artwork plate
+
+// Shadows (Figma effect styles)
+$shadow-medium: 0 8px 28px rgba(120, 177, 181, 0.1); // "Medium" effect style
+$shadow-header: 0 8px 14px rgba(120, 177, 181, 0.1);
+$shadow-menu: 0 8px 28px rgba(120, 177, 181, 0.06); // "Menu Shadow" effect style
+$shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.15); // "Suave" effect style
+
+// Breakpoints — the Figma canvas itself is a single 1440px desktop frame,
+// so these aren't from Dev Mode; they're max-width cutoffs chosen to cover
+// the 3 device classes the app needs to adapt to (desktop/tablet/mobile).
+$breakpoint-tablet: 1024px;
+$breakpoint-mobile: 640px;

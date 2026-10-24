@@ -1,0 +1,200 @@
+@use 'tokens' as t;
+
+:host {
+  display: block;
+}
+
+// Mirrors config-screen-layout's centered, symmetric-padding container so
+// Home stays visually consistent with the rest of the app.
+.home {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 77px 90px 80px;
+
+  @media (max-width: t.$breakpoint-tablet) {
+    padding: 48px 48px 56px;
+  }
+
+  @media (max-width: t.$breakpoint-mobile) {
+    padding: 32px 20px 40px;
+  }
+}
+
+.home__greeting {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: t.$space-lg;
+
+  h1 {
+    margin: 0;
+    font-family: t.$font-family-base;
+    font-weight: t.$font-weight-bold;
+    font-size: t.$font-size-hero;
+    color: t.$color-black;
+  }
+
+  app-outline-button {
+    width: 134px;
+    height: 30px;
+  }
+}
+
+.home__columns {
+  margin-top: t.$space-xl;
+  display: flex;
+  align-items: flex-start;
+  // Wider than $space-xl so the trainer card and team list read as two
+  // clearly separate sections.
+  gap: 157px;
+
+  @media (max-width: t.$breakpoint-tablet) {
+    gap: t.$space-xl;
+  }
+
+  // Single column on mobile: trainer info on top, team list below.
+  @media (max-width: t.$breakpoint-mobile) {
+    flex-direction: column;
+    align-items: center;
+    gap: t.$space-lg;
+  }
+}
+
+.home__trainer-card {
+  flex-shrink: 0;
+
+  @media (max-width: t.$breakpoint-mobile) {
+    width: 100%;
+  }
+}
+
+.home__team {
+  flex: 1;
+  min-width: 0;
+
+  @media (max-width: t.$breakpoint-mobile) {
+    width: 100%;
+  }
+}
+
+.home__team-empty {
+  margin: 0;
+  padding: t.$space-lg 0;
+  text-align: center;
+  font-family: t.$font-family-base;
+  color: t.$color-text-muted;
+}
+
+.home__team-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-lg;
+
+  app-outline-button {
+    width: 134px;
+    height: 30px;
+    flex-shrink: 0;
+  }
+}
+
+.home__team-swiper {
+  margin-top: t.$space-lg;
+  padding-bottom: t.$space-xl;
+  --swiper-navigation-color: #{t.$color-primary-navy};
+  --swiper-navigation-size: 20px;
+  --swiper-pagination-color: #{t.$color-primary-navy};
+  --swiper-pagination-bullet-inactive-color: #{t.$color-accent-blue-pale};
+  --swiper-pagination-bullet-inactive-opacity: 1;
+}
+
+// Navbar content projected into app-header's right-side slot.
+.home__nav-user {
+  position: relative;
+}
+
+.home__nav-user-toggle {
+  display: flex;
+  align-items: center;
+  gap: t.$space-xs;
+  height: 36px;
+  padding: 0 t.$space-md;
+  border: 1px solid t.$color-primary-navy;
+  border-radius: t.$radius-button;
+  background: t.$color-surface;
+  cursor: pointer;
+  font-family: t.$font-family-base;
+  font-weight: t.$font-weight-semibold;
+  font-size: t.$font-size-body;
+  color: t.$color-primary-navy;
+
+  span {
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @media (max-width: t.$breakpoint-mobile) {
+      max-width: 80px;
+    }
+  }
+
+  app-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+}
+
+.home__nav-user-menu {
+  position: absolute;
+  top: calc(100% + #{t.$space-sm});
+  right: 0;
+  z-index: 50;
+  min-width: 140px;
+  padding: t.$space-xs;
+  background: t.$color-surface;
+  border-radius: t.$radius-button;
+  box-shadow: t.$shadow-menu;
+
+  button {
+    width: 100%;
+    padding: t.$space-sm t.$space-md;
+    border: none;
+    background: none;
+    border-radius: t.$radius-button;
+    text-align: left;
+    cursor: pointer;
+    font-family: t.$font-family-base;
+    font-size: t.$font-size-body;
+    color: t.$color-danger;
+
+    &:hover {
+      background: t.$color-surface-muted;
+    }
+  }
+}
+
+.home__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: default;
+}
+
+.home__nav-search-toggle {
+  display: flex;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 24px;
+  color: t.$color-primary-navy;
+}
+
+.home__nav-search-wrap {
+  width: 220px;
+  max-width: 40vw;
+}

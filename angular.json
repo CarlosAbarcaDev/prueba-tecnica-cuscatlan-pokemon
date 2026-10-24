@@ -3,7 +3,10 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "schematicCollections": ["angular-eslint"]
+    "schematicCollections": [
+      "angular-eslint"
+    ],
+    "analytics": "95c49f14-f28c-46f0-8cb4-5598ab85e0c4"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -33,7 +36,8 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"]
+            "styles": ["src/styles.scss"],
+            "allowedCommonJsDependencies": ["sweetalert2"]
           },
           "configurations": {
             "production": {

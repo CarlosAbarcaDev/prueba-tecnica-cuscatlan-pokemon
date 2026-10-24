@@ -1,0 +1,70 @@
+@use 'tokens' as t;
+
+:host {
+  display: block;
+}
+
+.config-screen {
+  // Wide enough for the left card (392px) + gap (251px) + the widest right
+  // column, the Pokémon grid (521px), plus side padding, to sit side by
+  // side without wrapping.
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 77px 90px 80px;
+
+  @media (max-width: t.$breakpoint-tablet) {
+    padding: 48px 48px 56px;
+  }
+
+  @media (max-width: t.$breakpoint-mobile) {
+    padding: 32px 20px 40px;
+  }
+}
+
+.config-screen__heading {
+  display: flex;
+  align-items: center;
+  gap: t.$space-sm;
+
+  h1 {
+    margin: 0;
+    font-family: t.$font-family-base;
+    font-weight: t.$font-weight-bold;
+    font-size: t.$font-size-h1;
+    color: t.$color-primary-blue;
+  }
+}
+
+.config-screen__back {
+  font-size: t.$font-size-h1;
+  color: t.$color-primary-blue;
+  line-height: 1;
+}
+
+.config-screen__subtitle {
+  margin: t.$space-sm 0 0;
+  font-family: t.$font-family-base;
+  font-size: t.$font-size-body-lg;
+  color: t.$color-text-muted;
+}
+
+.config-screen__layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 251px;
+  margin-top: 60px;
+
+  @media (max-width: t.$breakpoint-tablet) {
+    gap: t.$space-xl;
+  }
+
+  // Single column on mobile: left card on top, form/grid below.
+  @media (max-width: t.$breakpoint-mobile) {
+    flex-direction: column;
+    align-items: center;
+    gap: t.$space-lg;
+    margin-top: t.$space-xl;
+  }
+}

@@ -1,0 +1,34 @@
+@use 'tokens' as t;
+
+// Without an explicit width, this wrapper (the actual flex item in
+// config-screen__layout) shrinks-to-fit around app-photo-upload's own
+// width: 100%, which resolves against an indeterminate container and falls
+// back to the card's intrinsic 392px — overflowing past the right edge on
+// narrow screens instead of being capped by max-width: 100%.
+.profile-step__photo {
+  width: 392px;
+  max-width: 100%;
+}
+
+.profile-step__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 68px;
+  width: 349px;
+  max-width: 100%;
+}
+
+.profile-step__fields {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: t.$space-lg;
+  width: 334px;
+  max-width: 100%;
+}
+
+app-primary-button {
+  width: 222px;
+  max-width: 100%;
+}

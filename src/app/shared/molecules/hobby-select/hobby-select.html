@@ -1,0 +1,35 @@
+<div class="hobby-select">
+  @if (selected) {
+    <div class="hobby-select__box hobby-select__box--filled">
+      <span class="hobby-select__static-label">Pasatiempo favorito</span>
+      <span class="hobby-select__chip">
+        {{ selected }}
+        <button type="button" aria-label="Quitar pasatiempo" (click)="clearSelection()">✕</button>
+      </span>
+    </div>
+  } @else {
+    <div class="hobby-select__box">
+      <input
+        [id]="inputId"
+        type="text"
+        placeholder=" "
+        [value]="query"
+        [disabled]="disabled"
+        (input)="handleQueryInput($event)"
+        (focus)="openPanel()"
+        (blur)="closePanel()"
+      />
+      <label [for]="inputId">Pasatiempo favorito</label>
+    </div>
+
+    @if (isOpen && filteredOptions.length) {
+      <ul class="hobby-select__panel">
+        @for (option of filteredOptions; track option) {
+          <li>
+            <button type="button" (mousedown)="selectOption(option, $event)">{{ option }}</button>
+          </li>
+        }
+      </ul>
+    }
+  }
+</div>
