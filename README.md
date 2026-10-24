@@ -4,7 +4,15 @@ Aplicación Angular que consume [PokeAPI](https://pokeapi.co/) para que el usuar
 perfil de entrenador y arme un equipo de 3 Pokémon de la primera generación, siguiendo el diseño
 de Figma "Pokemon-Trainer".
 
-**Demo:** <!-- DEPLOY_URL -->
+**Demo:** https://prueba-tecnica-cuscatlan-pokemon.carlos-abarca00.workers.dev/
+
+## Deploy
+
+Desplegado en Cloudflare Workers (static assets) vía Wrangler:
+
+```bash
+npm run deploy
+```
 
 ## Flujo de la aplicación
 
