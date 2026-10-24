@@ -5,10 +5,9 @@
 }
 
 .config-screen {
-  // Wide enough for the two columns of every screen that uses this template
-  // to sit side by side without wrapping: the photo/review card (392px) +
-  // gap (251px, matches Figma) + the widest right column so far, the
-  // Pokemon search/grid at 521px, plus the side padding below.
+  // Wide enough for the left card (392px) + gap (251px) + the widest right
+  // column, the Pokémon grid (521px), plus side padding, to sit side by
+  // side without wrapping.
   max-width: 1360px;
   margin: 0 auto;
   padding: 77px 90px 80px;
@@ -54,17 +53,14 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 251px; // matches the Figma gap between the left card and the right column
+  gap: 251px;
   margin-top: 60px;
 
   @media (max-width: t.$breakpoint-tablet) {
     gap: t.$space-xl;
   }
 
-  // Single column on mobile: the left card (photo upload / trainer review)
-  // stays on top — tall and narrow rather than wide — with the questionnaire
-  // or Pokémon grid below it, instead of the two columns wrapping side by
-  // side at an awkward width.
+  // Single column on mobile: left card on top, form/grid below.
   @media (max-width: t.$breakpoint-mobile) {
     flex-direction: column;
     align-items: center;

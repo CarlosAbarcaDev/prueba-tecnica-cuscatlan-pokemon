@@ -55,8 +55,7 @@
   }
 }
 
-// Soft blurred shadow under the sprite — approximates the rotated/skewed
-// ellipse asset in Figma without importing one per card.
+// Soft blurred shadow under the sprite, drawn in CSS instead of an image asset.
 .pokemon-stat-card__shadow {
   position: absolute;
   bottom: 6px;

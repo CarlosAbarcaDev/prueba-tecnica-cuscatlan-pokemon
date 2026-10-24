@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 /**
- * The yellow rounded card shell reused by the photo-upload step and (from
- * module 6 on) the read-only trainer review card — same shape, different
- * projected content, so the shape itself lives here as a single atom.
+ * The yellow rounded card shell reused by the photo-upload step and the
+ * read-only trainer review card — same shape, different projected content.
  */
 @Component({
   selector: 'app-card-shell',

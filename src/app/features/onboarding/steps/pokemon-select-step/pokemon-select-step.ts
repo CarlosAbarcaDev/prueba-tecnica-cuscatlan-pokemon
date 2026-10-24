@@ -45,9 +45,8 @@ export class PokemonSelectStepComponent {
   private readonly allPokemon = signal<PokemonSummary[]>([]);
   protected readonly query = signal('');
   protected readonly listError = signal(false);
-  // Reopening this step to edit an already-saved team (via Home's "Editar")
-  // starts with its 3 members pre-selected instead of an empty grid; a
-  // first-time run simply has no team yet, so this is `[]` as before.
+  // Reopening this step to edit an already-saved team starts with its 3
+  // members pre-selected instead of an empty grid.
   protected readonly selectedIds = signal<number[]>(this.trainerStore.team().map((pokemon) => pokemon.id));
 
   // The CSS grid drops from 3 to 2 columns at the mobile breakpoint, so the

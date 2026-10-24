@@ -1,5 +1,4 @@
-// Design tokens read from Figma Dev Mode (file "Pokemon-Trainer", node 0:1) via the
-// official Figma MCP server — exact values, not estimates.
+// Design tokens pulled from the Figma file.
 
 // Colors (Figma variable names in comments)
 $color-primary-navy: #01426a; // Primary/Azul/Azul 00 — headings, borders, buttons, badges
@@ -18,7 +17,7 @@ $color-track-bg: #f0f0f3; // neumorphic progress track base
 $color-track-bg-inner: #eeeeee;
 $color-danger: #e53935; // delete/trash icon
 $color-avatar-placeholder-bg: #e7eff5; // empty photo circle background
-$color-calendar-accent: #5c2ee8; // approximated from the pasted reference screenshot in Figma, not a token
+$color-calendar-accent: #5c2ee8; // approximated visually, not an exact design token
 
 // Pokémon type accent colors for stat bars. Only grass/fire/water were confirmed
 // directly from Figma; the rest follow the same palette family as a reasonable

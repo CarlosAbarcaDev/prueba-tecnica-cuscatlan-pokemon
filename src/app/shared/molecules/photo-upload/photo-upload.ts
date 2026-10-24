@@ -21,10 +21,10 @@ function noop(): void {
 }
 
 /**
- * Trainer photo dropzone matching the Figma "Imágen perfil" card: yellow
- * rounded card, circular preview once a photo is picked, and a filename
- * pill with a remove button. Rejects anything but JPG/JPEG/PNG with a
- * SweetAlert2 error instead of silently failing.
+ * Trainer photo dropzone: yellow rounded card, circular preview once a
+ * photo is picked, and a filename pill with a remove button. Rejects
+ * anything but JPG/JPEG/PNG with a SweetAlert2 error instead of silently
+ * failing.
  */
 @Component({
   selector: 'app-photo-upload',

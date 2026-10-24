@@ -8,11 +8,10 @@ function noop(): void {
 }
 
 /**
- * Outlined text input with a floating label, matching the Figma input
- * component: the label sits inline as a placeholder until the field is
- * focused or filled, then floats above the border. The CSS relies on the
- * native `:placeholder-shown` pseudo-class (placeholder set to a single
- * space) so no JS state is needed to drive the float.
+ * Outlined text input with a floating label: it sits inline as a
+ * placeholder until the field is focused or filled, then floats above the
+ * border. The CSS relies on the native `:placeholder-shown` pseudo-class
+ * (placeholder set to a single space) so no JS state drives the float.
  */
 @Component({
   selector: 'app-floating-input',

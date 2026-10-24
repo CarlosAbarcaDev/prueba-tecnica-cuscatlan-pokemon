@@ -5,9 +5,8 @@
   width: 392px;
   max-width: 100%;
   // Only takes effect when a parent gives this host a definite height (e.g.
-  // trainer-review-card stretched to match a taller sibling column) —
-  // otherwise percentage height resolves to auto and min-height below wins,
-  // same as the photo-upload step today.
+  // a sibling column stretched via align-self) — otherwise percentage
+  // height resolves to auto and min-height below wins.
   height: 100%;
 }
 

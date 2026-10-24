@@ -22,9 +22,8 @@ function noop(): void {
 
 /**
  * Favorite-hobby field: a filterable suggestion list that, once a hobby is
- * picked, collapses into a single removable chip — matching the Figma
- * "Pasatiempo favorito" autocomplete. Optional field, so an empty value is
- * valid.
+ * picked, collapses into a single removable chip. Optional field, so an
+ * empty value is valid.
  */
 @Component({
   selector: 'app-hobby-select',

@@ -73,8 +73,8 @@ function parseIsoDateLocal(iso: string): Date {
 
 /**
  * Custom calendar field (day grid + a year-list shortcut) replacing the
- * native <input type="date">, whose popup can't be restyled to match the
- * Figma reference. CVA value is an ISO date string (yyyy-MM-dd).
+ * native <input type="date">, whose popup can't be restyled. CVA value is
+ * an ISO date string (yyyy-MM-dd).
  */
 @Component({
   selector: 'app-date-picker',

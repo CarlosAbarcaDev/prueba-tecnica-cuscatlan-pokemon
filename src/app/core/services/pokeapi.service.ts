@@ -8,7 +8,7 @@ import { PokemonDetail, PokemonStat, PokemonSummary } from '../models/pokemon.mo
 const BASE_URL = 'https://pokeapi.co/api/v2';
 const GENERATION_ONE_LIMIT = 151;
 
-/** Base stat caps used by the PDF spec to render the stat bars as a percentage. */
+/** Base stat caps used to render each stat bar as a percentage of its max. */
 const STAT_MAX_VALUES: Record<string, number> = {
   hp: 255,
   attack: 190,

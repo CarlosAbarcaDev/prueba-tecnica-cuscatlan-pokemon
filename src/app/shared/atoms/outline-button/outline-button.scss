@@ -1,8 +1,7 @@
 @use 'tokens' as t;
 
 // No default size here: the host has no intrinsic width/height, same as
-// PrimaryButtonComponent — callers size it from outside (e.g. the 134x30
-// "Editar" buttons on Home).
+// PrimaryButtonComponent — callers size it from outside.
 :host {
   display: block;
 }

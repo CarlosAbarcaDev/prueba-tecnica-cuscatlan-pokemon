@@ -4,11 +4,8 @@
   display: block;
 }
 
-// Mirrors config-screen-layout's centered, symmetric-padding container
-// instead of Figma's literal flush-to-1440px-edge list panel — this app has
-// no other full-bleed sections, so keeping Home consistent with every other
-// screen reads better than reproducing a single edge-bleed quirk tied to one
-// fixed canvas width.
+// Mirrors config-screen-layout's centered, symmetric-padding container so
+// Home stays visually consistent with the rest of the app.
 .home {
   max-width: 1360px;
   margin: 0 auto;
@@ -47,8 +44,7 @@
   margin-top: t.$space-xl;
   display: flex;
   align-items: flex-start;
-  // Matches the gap between the two columns in Figma (682 - 525 = 157px),
-  // wider than $space-xl so the trainer card and the team list read as two
+  // Wider than $space-xl so the trainer card and team list read as two
   // clearly separate sections.
   gap: 157px;
 

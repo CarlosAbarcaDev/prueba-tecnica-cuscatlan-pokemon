@@ -76,8 +76,7 @@
     max-width: 100%;
   }
 
-  // Stacked and full-width once the two buttons' combined width (150 + 222
-  // + gap) no longer fits a phone-width column.
+  // Stacked and full-width once the two buttons no longer fit a phone-width column.
   @media (max-width: t.$breakpoint-mobile) {
     flex-direction: column;
 
