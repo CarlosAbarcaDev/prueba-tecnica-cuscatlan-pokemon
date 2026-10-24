@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IconComponent } from './icon';
+import { IconComponent } from '../../../../app/shared/atoms/icon/icon';
 
 describe('IconComponent', () => {
   let fixture: ComponentFixture<IconComponent>;

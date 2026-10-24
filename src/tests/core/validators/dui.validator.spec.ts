@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 
-import { duiFormatValidator } from './dui.validator';
+import { duiFormatValidator } from '../../../app/core/validators/dui.validator';
 
 describe('duiFormatValidator', () => {
   it('accepts a well-formed DUI', () => {

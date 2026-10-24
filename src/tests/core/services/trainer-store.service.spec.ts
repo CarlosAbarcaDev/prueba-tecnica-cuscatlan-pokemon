@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PokemonDetail } from '../models/pokemon.model';
-import { TrainerStoreService } from './trainer-store.service';
+import { PokemonDetail } from '../../../app/core/models/pokemon.model';
+import { TrainerStoreService } from '../../../app/core/services/trainer-store.service';
 
 describe('TrainerStoreService', () => {
   let service: TrainerStoreService;

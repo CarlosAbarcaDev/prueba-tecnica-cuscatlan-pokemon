@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { LoadingStepComponent } from './loading-step';
+import { LoadingStepComponent } from '../../../../../app/features/onboarding/steps/loading-step/loading-step';
 
 describe('LoadingStepComponent', () => {
   let fixture: ComponentFixture<LoadingStepComponent>;

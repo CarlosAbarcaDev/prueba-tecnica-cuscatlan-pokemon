@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PokemonDetail } from '../../../core/models/pokemon.model';
-import { PokemonStatCardComponent } from './pokemon-stat-card';
+import { PokemonDetail } from '../../../../app/core/models/pokemon.model';
+import { PokemonStatCardComponent } from '../../../../app/shared/molecules/pokemon-stat-card/pokemon-stat-card';
 
 describe('PokemonStatCardComponent', () => {
   let fixture: ComponentFixture<PokemonStatCardComponent>;

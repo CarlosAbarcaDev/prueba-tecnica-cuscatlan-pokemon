@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
-import { FloatingInputComponent } from '../molecules/floating-input/floating-input';
-import { DuiFormatDirective } from './dui-format.directive';
+import { FloatingInputComponent } from '../../../app/shared/molecules/floating-input/floating-input';
+import { DuiFormatDirective } from '../../../app/shared/directives/dui-format.directive';
 
 @Component({
   standalone: true,

@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PokemonCardComponent } from './pokemon-card';
+import { PokemonCardComponent } from '../../../../app/shared/molecules/pokemon-card/pokemon-card';
 
 describe('PokemonCardComponent', () => {
   let fixture: ComponentFixture<PokemonCardComponent>;

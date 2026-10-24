@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TrainerStoreService } from '../../../core/services/trainer-store.service';
-import { TrainerCardComponent } from './trainer-card';
+import { TrainerStoreService } from '../../../../app/core/services/trainer-store.service';
+import { TrainerCardComponent } from '../../../../app/shared/organisms/trainer-card/trainer-card';
 
 describe('TrainerCardComponent', () => {
   let fixture: ComponentFixture<TrainerCardComponent>;

@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 
-import { pokeApiErrorInterceptor } from './pokeapi-error.interceptor';
+import { pokeApiErrorInterceptor } from '../../../app/core/interceptors/pokeapi-error.interceptor';
 
 describe('pokeApiErrorInterceptor', () => {
   let http: HttpClient;

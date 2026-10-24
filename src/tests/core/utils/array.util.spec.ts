@@ -1,4 +1,4 @@
-import { chunk } from './array.util';
+import { chunk } from '../../../app/core/utils/array.util';
 
 describe('chunk', () => {
   it('splits a list into fixed-size groups', () => {

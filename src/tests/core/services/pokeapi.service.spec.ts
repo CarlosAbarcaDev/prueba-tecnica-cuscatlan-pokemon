@@ -1,7 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { PokeApiService } from './pokeapi.service';
+import { PokeApiService } from '../../../app/core/services/pokeapi.service';
 
 describe('PokeApiService', () => {
   let service: PokeApiService;

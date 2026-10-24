@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DatePickerComponent } from './date-picker';
+import { DatePickerComponent } from '../../../../app/shared/molecules/date-picker/date-picker';
 
 describe('DatePickerComponent', () => {
   let fixture: ComponentFixture<DatePickerComponent>;
@@ -14,7 +14,7 @@ describe('DatePickerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('formats an ISO date as DD/MonAbbrev/YYYY, matching the Figma display', () => {
+  it('formats an ISO date as DD/MonAbbrev/YYYY', () => {
     expect(component['formatDisplay']('2004-09-06')).toBe('06/Sept/2004');
   });
 

@@ -1,4 +1,4 @@
-import { resolveDocumentStrategy } from './document-validation.strategy';
+import { resolveDocumentStrategy } from '../../../app/core/strategies/document-validation.strategy';
 
 describe('resolveDocumentStrategy', () => {
   it('resolves to the DUI strategy for an adult', () => {

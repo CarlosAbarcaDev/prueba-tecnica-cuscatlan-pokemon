@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, provideRouter } from '@angular/router';
 
-import { TrainerStoreService } from '../services/trainer-store.service';
-import { profileRequiredGuard } from './profile-required.guard';
+import { TrainerStoreService } from '../../../app/core/services/trainer-store.service';
+import { profileRequiredGuard } from '../../../app/core/guards/profile-required.guard';
 
 describe('profileRequiredGuard', () => {
   function runGuard() {

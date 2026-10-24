@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, provideRouter } from '@angular/router';
 
-import { PokemonDetail } from '../models/pokemon.model';
-import { TrainerStoreService } from '../services/trainer-store.service';
-import { onboardingCompleteGuard } from './onboarding-complete.guard';
+import { PokemonDetail } from '../../../app/core/models/pokemon.model';
+import { TrainerStoreService } from '../../../app/core/services/trainer-store.service';
+import { onboardingCompleteGuard } from '../../../app/core/guards/onboarding-complete.guard';
 
 describe('onboardingCompleteGuard', () => {
   function runGuard() {

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoadingPokeballComponent } from './loading-pokeball';
+import { LoadingPokeballComponent } from '../../../../app/shared/molecules/loading-pokeball/loading-pokeball';
 
 describe('LoadingPokeballComponent', () => {
   let fixture: ComponentFixture<LoadingPokeballComponent>;

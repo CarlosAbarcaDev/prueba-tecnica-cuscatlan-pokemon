@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router, provideRouter } from '@angular/router';
 import { vi } from 'vitest';
 
-import { PokemonDetail } from '../../core/models/pokemon.model';
-import { TrainerStoreService } from '../../core/services/trainer-store.service';
-import { HomeComponent } from './home';
+import { PokemonDetail } from '../../../app/core/models/pokemon.model';
+import { TrainerStoreService } from '../../../app/core/services/trainer-store.service';
+import { HomeComponent } from '../../../app/features/home/home';
 
 describe('HomeComponent', () => {
   let fixture: ComponentFixture<HomeComponent>;
