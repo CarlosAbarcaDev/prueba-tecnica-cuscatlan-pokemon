@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { parseIsoDateLocal } from '../../../core/utils/age.util';
 import { IconComponent } from '../../atoms/icon/icon';
 
 const WEEKDAY_INITIALS = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
@@ -47,6 +48,7 @@ interface DayCell {
   date: Date;
   day: number;
   inCurrentMonth: boolean;
+  disabled: boolean;
 }
 
 function noop(): void {
@@ -58,17 +60,6 @@ function toIsoDate(date: Date): string {
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
-}
-
-/**
- * `new Date('yyyy-MM-dd')` parses as UTC midnight, which shifts to the
- * previous day once converted to a negative-UTC-offset local time (e.g.
- * El Salvador, UTC-6) — exactly the timezones this app targets. Parse the
- * parts ourselves and build a local Date instead.
- */
-function parseIsoDateLocal(iso: string): Date {
-  const [year, month, day] = iso.split('-').map(Number);
-  return new Date(year, month - 1, day);
 }
 
 /**
@@ -105,10 +96,19 @@ export class DatePickerComponent implements ControlValueAccessor {
   protected panelMode: 'days' | 'years' = 'days';
 
   private readonly today = new Date();
+  private readonly todayMidnight = new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate());
+  private readonly maxYearMonth = this.today.getFullYear() * 12 + this.today.getMonth();
+
   protected readonly viewYear = signal(this.today.getFullYear());
   protected readonly viewMonth = signal(this.today.getMonth());
 
   protected readonly monthLabel = computed(() => `${this.monthNames[this.viewMonth()]} ${this.viewYear()}`);
+
+  // Birth dates can never be in the future, so "next month"/future days stay
+  // disabled instead of letting the picker produce a negative age.
+  protected readonly isNextMonthDisabled = computed(
+    () => this.viewYear() * 12 + this.viewMonth() >= this.maxYearMonth
+  );
 
   protected readonly days = computed<DayCell[]>(() => {
     const year = this.viewYear();
@@ -119,17 +119,23 @@ export class DatePickerComponent implements ControlValueAccessor {
     const daysInPrevMonth = new Date(year, month, 0).getDate();
 
     const cells: DayCell[] = [];
+    const makeCell = (date: Date, day: number, inCurrentMonth: boolean): DayCell => ({
+      date,
+      day,
+      inCurrentMonth,
+      disabled: date.getTime() > this.todayMidnight.getTime()
+    });
 
     for (let i = startOffset - 1; i >= 0; i--) {
       const day = daysInPrevMonth - i;
-      cells.push({ date: new Date(year, month - 1, day), day, inCurrentMonth: false });
+      cells.push(makeCell(new Date(year, month - 1, day), day, false));
     }
     for (let day = 1; day <= daysInMonth; day++) {
-      cells.push({ date: new Date(year, month, day), day, inCurrentMonth: true });
+      cells.push(makeCell(new Date(year, month, day), day, true));
     }
     while (cells.length % 7 !== 0) {
       const day = cells.length - (startOffset + daysInMonth) + 1;
-      cells.push({ date: new Date(year, month + 1, day), day, inCurrentMonth: false });
+      cells.push(makeCell(new Date(year, month + 1, day), day, false));
     }
 
     return cells;
@@ -207,12 +213,17 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   protected selectYear(year: number, event: Event): void {
     event.stopPropagation();
+    const month = year * 12 + this.viewMonth() > this.maxYearMonth ? this.today.getMonth() : this.viewMonth();
     this.viewYear.set(year);
+    this.viewMonth.set(month);
     this.panelMode = 'days';
   }
 
   protected selectDay(cell: DayCell, event: Event): void {
     event.stopPropagation();
+    if (cell.disabled) {
+      return;
+    }
     if (!cell.inCurrentMonth) {
       this.viewYear.set(cell.date.getFullYear());
       this.viewMonth.set(cell.date.getMonth());
@@ -235,6 +246,10 @@ export class DatePickerComponent implements ControlValueAccessor {
     } else if (month > 11) {
       month = 0;
       year += 1;
+    }
+    if (year * 12 + month > this.maxYearMonth) {
+      year = this.today.getFullYear();
+      month = this.today.getMonth();
     }
     this.viewMonth.set(month);
     this.viewYear.set(year);

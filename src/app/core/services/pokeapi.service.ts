@@ -70,8 +70,13 @@ export class PokeApiService {
       map((response) => this.toDetail(response)),
       // A failed request still resolves to a usable (if empty) detail so a
       // single flaky Pokémon never breaks the whole grid — the card just
-      // falls back to its placeholder sprite, same as a genuinely missing one.
-      catchError(() => of(this.toFallbackDetail(id))),
+      // falls back to its placeholder sprite. The cache entry is dropped on
+      // failure (like getGenerationOneList) so a later call retries instead
+      // of replaying this blank fallback forever.
+      catchError(() => {
+        this.detailCache.delete(id);
+        return of(this.toFallbackDetail(id));
+      }),
       shareReplay({ bufferSize: 1, refCount: false })
     );
 

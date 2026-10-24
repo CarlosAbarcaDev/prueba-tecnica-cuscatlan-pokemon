@@ -1,10 +1,21 @@
 import { Injectable, computed, signal } from '@angular/core';
 
+import { TEAM_SIZE } from '../constants/team.constant';
 import { PokemonDetail } from '../models/pokemon.model';
 import { TrainerProfile, TrainerState } from '../models/trainer.model';
 import { calculateAge } from '../utils/age.util';
 
 const STORAGE_KEY = 'pokemon-trainer-state';
+
+function isTrainerState(value: unknown): value is TrainerState {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'profile' in value &&
+    'team' in value &&
+    Array.isArray((value as TrainerState).team)
+  );
+}
 
 function readFromStorage(): TrainerState {
   try {
@@ -12,7 +23,8 @@ function readFromStorage(): TrainerState {
     if (!raw) {
       return { profile: null, team: [] };
     }
-    return JSON.parse(raw) as TrainerState;
+    const parsed: unknown = JSON.parse(raw);
+    return isTrainerState(parsed) ? parsed : { profile: null, team: [] };
   } catch {
     return { profile: null, team: [] };
   }
@@ -31,7 +43,7 @@ export class TrainerStoreService {
   readonly team = computed(() => this.state().team);
   readonly isOnboardingComplete = computed(() => {
     const current = this.state();
-    return current.profile !== null && current.team.length === 3;
+    return current.profile !== null && current.team.length === TEAM_SIZE;
   });
 
   readonly age = computed(() => {

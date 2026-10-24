@@ -21,7 +21,14 @@
           </button>
           <div class="date-picker__nav">
             <button type="button" aria-label="Mes anterior" (click)="goToPreviousMonth($event)">‹</button>
-            <button type="button" aria-label="Mes siguiente" (click)="goToNextMonth($event)">›</button>
+            <button
+              type="button"
+              aria-label="Mes siguiente"
+              [disabled]="isNextMonthDisabled()"
+              (click)="goToNextMonth($event)"
+            >
+              ›
+            </button>
           </div>
         </div>
 
@@ -38,6 +45,7 @@
               class="date-picker__day"
               [class.date-picker__day--muted]="!cell.inCurrentMonth"
               [class.date-picker__day--selected]="isSelected(cell)"
+              [disabled]="cell.disabled"
               (click)="selectDay(cell, $event)"
             >
               {{ cell.day }}

@@ -133,6 +133,11 @@
     width: 24px;
     height: 24px;
     line-height: 1;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.35;
+    }
   }
 }
 
@@ -166,6 +171,15 @@
 
   &:hover {
     background: t.$color-surface-muted;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: t.$color-accent-blue-pale;
+
+    &:hover {
+      background: none;
+    }
   }
 }
 

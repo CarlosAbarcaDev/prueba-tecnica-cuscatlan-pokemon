@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { TEAM_SIZE } from '../../../../core/constants/team.constant';
 import { calculateAge } from '../../../../core/utils/age.util';
 import { DocumentKind, TrainerProfile } from '../../../../core/models/trainer.model';
 import { TrainerStoreService } from '../../../../core/services/trainer-store.service';
@@ -140,7 +141,7 @@ export class ProfileStepComponent {
     // Editing an already-onboarded trainer only touches these fields — the
     // team stays as-is, so skip straight back to Home instead of forcing a
     // re-selection of all 3 Pokémon.
-    const hasExistingTeam = this.trainerStore.team().length === 3;
+    const hasExistingTeam = this.trainerStore.team().length === TEAM_SIZE;
     void this.router.navigate([hasExistingTeam ? '/home' : '/onboarding/loading']);
   }
 }

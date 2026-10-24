@@ -3,8 +3,10 @@ import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signa
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 
-import { chunk } from '../../../../core/utils/array.util';
+import { TEAM_SIZE } from '../../../../core/constants/team.constant';
 import { PokemonSummary } from '../../../../core/models/pokemon.model';
+import { getMobileMediaQuery } from '../../../../core/utils/breakpoint.util';
+import { chunk } from '../../../../core/utils/array.util';
 import { PokeApiService } from '../../../../core/services/pokeapi.service';
 import { TrainerStoreService } from '../../../../core/services/trainer-store.service';
 import { OutlineButtonComponent } from '../../../../shared/atoms/outline-button/outline-button';
@@ -15,11 +17,8 @@ import { SectionHeadingComponent } from '../../../../shared/molecules/section-he
 import { TrainerReviewCardComponent } from '../../../../shared/molecules/trainer-review-card/trainer-review-card';
 import { ConfigScreenLayoutComponent } from '../../../../shared/templates/config-screen-layout/config-screen-layout';
 
-const TEAM_SIZE = 3;
 const ROW_SIZE = 3;
 const ROW_SIZE_MOBILE = 2;
-// Matches $breakpoint-mobile in _tokens.scss.
-const MOBILE_MEDIA_QUERY = '(max-width: 640px)';
 
 @Component({
   selector: 'app-pokemon-select-step',
@@ -53,7 +52,7 @@ export class PokemonSelectStepComponent {
   // virtual-scroll rows must match: chunking by a fixed 3 while the grid
   // renders 2 per line staggers every row after the first (2, then 1, then
   // 2 from the next row, and so on).
-  private readonly mobileQuery = matchMedia(MOBILE_MEDIA_QUERY);
+  private readonly mobileQuery = matchMedia(getMobileMediaQuery());
   private readonly isMobile = signal(this.mobileQuery.matches);
 
   protected readonly filteredRows = computed(() => {

@@ -19,6 +19,10 @@ describe('duiFormatValidator', () => {
     expect(duiFormatValidator(new FormControl('0434113O-5'))).toEqual({ duiFormat: true });
   });
 
+  it('rejects a well-formed DUI whose check digit does not match', () => {
+    expect(duiFormatValidator(new FormControl('04341130-1'))).toEqual({ duiFormat: true });
+  });
+
   it('treats an empty value as valid, leaving required-ness to Validators.required', () => {
     expect(duiFormatValidator(new FormControl(''))).toBeNull();
   });

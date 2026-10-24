@@ -23,9 +23,9 @@
     (change)="handleFileSelected($event)"
   />
 
-  @if (fileName) {
+  @if (photoDataUrl) {
     <div class="photo-upload__file-pill">
-      <span class="photo-upload__filename">{{ fileName }}</span>
+      <span class="photo-upload__filename">{{ fileName ?? 'Foto cargada' }}</span>
       <button
         type="button"
         class="photo-upload__remove"
