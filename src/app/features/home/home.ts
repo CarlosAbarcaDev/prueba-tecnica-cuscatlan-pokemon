@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TrainerStoreService } from '../../core/services/trainer-store.service';
@@ -24,7 +24,9 @@ import { TrainerCardComponent } from '../../shared/organisms/trainer-card/traine
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  // <swiper-container>/<swiper-slide> are custom elements registered in main.ts.
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeComponent {
   private readonly trainerStore = inject(TrainerStoreService);

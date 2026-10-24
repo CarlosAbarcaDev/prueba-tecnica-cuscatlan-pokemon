@@ -42,13 +42,17 @@
         <app-outline-button icon="edit" (click)="editTeam()">Editar</app-outline-button>
       </div>
 
-      <div class="home__team-list">
-        @for (pokemon of filteredTeam(); track pokemon.id) {
-          <app-pokemon-stat-card [pokemon]="pokemon" />
-        } @empty {
-          <p class="home__team-empty">Ningún Pokémon coincide con la búsqueda.</p>
-        }
-      </div>
+      @if (filteredTeam().length > 0) {
+        <swiper-container class="home__team-swiper" navigation="true" pagination="true" auto-height="true" space-between="24">
+          @for (pokemon of filteredTeam(); track pokemon.id) {
+            <swiper-slide>
+              <app-pokemon-stat-card [pokemon]="pokemon" />
+            </swiper-slide>
+          }
+        </swiper-container>
+      } @else {
+        <p class="home__team-empty">Ningún Pokémon coincide con la búsqueda.</p>
+      }
     </section>
   </div>
 </main>
