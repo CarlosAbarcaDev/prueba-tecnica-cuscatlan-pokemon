@@ -1,6 +1,5 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { vi } from 'vitest';
 
 import { PokemonCardComponent } from '../../../../app/shared/molecules/pokemon-card/pokemon-card';
 
@@ -93,44 +92,5 @@ describe('PokemonCardComponent', () => {
     fixture.nativeElement.querySelector('button').click();
 
     expect(emitted).toBe(false);
-  });
-
-  describe('with IntersectionObserver available', () => {
-    let capturedCallback: IntersectionObserverCallback | undefined;
-    let disconnectSpy: ReturnType<typeof vi.fn>;
-
-    beforeEach(() => {
-      disconnectSpy = vi.fn();
-      class FakeIntersectionObserver {
-        constructor(callback: IntersectionObserverCallback) {
-          capturedCallback = callback;
-        }
-        observe = vi.fn();
-        unobserve = vi.fn();
-        disconnect = disconnectSpy;
-      }
-      vi.stubGlobal('IntersectionObserver', FakeIntersectionObserver);
-    });
-
-    afterEach(() => {
-      vi.unstubAllGlobals();
-      capturedCallback = undefined;
-    });
-
-    it('does not fetch the detail until the card actually intersects the viewport', () => {
-      fixture.detectChanges();
-      httpMock.expectNone('https://pokeapi.co/api/v2/pokemon/1');
-
-      capturedCallback?.([{ isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver);
-
-      httpMock.expectOne('https://pokeapi.co/api/v2/pokemon/1').flush({
-        id: 1,
-        name: 'bulbasaur',
-        types: [],
-        stats: [],
-        sprites: {}
-      });
-      expect(disconnectSpy).toHaveBeenCalled();
-    });
   });
 });

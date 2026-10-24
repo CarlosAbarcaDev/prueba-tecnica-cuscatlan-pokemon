@@ -1,4 +1,5 @@
-import { CUSTOM_ELEMENTS_SCHEMA, ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 
@@ -23,6 +24,7 @@ const MOBILE_MEDIA_QUERY = '(max-width: 640px)';
 @Component({
   selector: 'app-pokemon-select-step',
   imports: [
+    ScrollingModule,
     ConfigScreenLayoutComponent,
     TrainerReviewCardComponent,
     SectionHeadingComponent,
@@ -33,9 +35,7 @@ const MOBILE_MEDIA_QUERY = '(max-width: 640px)';
   ],
   templateUrl: './pokemon-select-step.html',
   styleUrl: './pokemon-select-step.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  // <swiper-container>/<swiper-slide> are custom elements registered in main.ts.
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PokemonSelectStepComponent {
   private readonly pokeApi = inject(PokeApiService);
