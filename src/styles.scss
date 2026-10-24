@@ -3,6 +3,12 @@
 // Poppins is the only font family used across the app, weights 400-800.
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
+// Exposes the SCSS breakpoint token to TypeScript (see core/utils/breakpoint.util.ts)
+// so a component's matchMedia query can never drift from the CSS grid's own breakpoint.
+:root {
+  --breakpoint-mobile: #{t.$breakpoint-mobile};
+}
+
 html,
 body {
   height: 100%;

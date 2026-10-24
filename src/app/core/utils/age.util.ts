@@ -4,7 +4,7 @@
  * (e.g. El Salvador, UTC-6) — exactly where this app is meant to run.
  * Parse the parts ourselves and build a local Date instead.
  */
-function parseIsoDateLocal(iso: string): Date {
+export function parseIsoDateLocal(iso: string): Date {
   const [year, month, day] = iso.split('-').map(Number);
   return new Date(year, month - 1, day);
 }
